@@ -1,4 +1,5 @@
-<?php 
+<?php
+include("seguridad.php");
 include ('conexion.php');
 
 $producto = $_POST['NombredeProducto'];
