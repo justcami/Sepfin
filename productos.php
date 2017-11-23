@@ -1,3 +1,12 @@
+<?php
+include("seguridad.php");
+?>
+<?php 
+            echo "<b>Bienvenido: </b>";
+            echo $user."<br>";
+            ?>
+            <a href="logout.php">Cerrar Sesion</a><br>
+			<a href="main.php">Regresar al inicio</a><br><br>
 <!DOCTYPE html>
 <html lang="es"> 
 <head>
