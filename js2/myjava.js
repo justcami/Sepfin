@@ -33,49 +33,12 @@ $(function(){
 });
 
 function dimePropiedades(){ 
-    var indice = document.form1.Departamento.selectedIndex; 
-    var textoEscogido = document.form1.Departamento.options[indice].text; 
+    var indice = document.form1.id_usuario.selectedIndex; 
+    var textoEscogido = document.form1.id_usuario.options[indice].text; 
 	if (textoEscogido=="SELECCIONE")
-		{document.form1.departamento3.value = '';}
+		{document.form1.id_usuario2.value = '';}
 	else
-		{document.form1.departamento3.value = textoEscogido;}
-                
-        var indice1 = document.form1.Ciudad.selectedIndex; 
-    var textoEscogido = document.form1.Ciudad.options[indice1].text; 
-	if (textoEscogido=="SELECCIONE")
-		{document.form1.ciudad3.value = '';}
-	else
-		{document.form1.ciudad3.value = textoEscogido;}
-                
-        var indice2 = document.form1.mes.selectedIndex; 
-    var textoEscogido = document.form1.mes.options[indice2].text; 
-	if (textoEscogido=="SELECCIONE")
-		{document.form1.mes3.value = '';}
-	else
-		{document.form1.mes3.value = textoEscogido;}
-                
-                
-        var indice3 = document.form1.year.selectedIndex; 
-    var textoEscogido = document.form1.year.options[indice3].text; 
-	if (textoEscogido=="SELECCIONE")
-		{document.form1.year3.value = '';}
-	else
-		{document.form1.year3.value = textoEscogido;}
-                
-        var indice4 = document.form1.cuotas.selectedIndex; 
-    var textoEscogido = document.form1.cuotas.options[indice4].text; 
-	if (textoEscogido=="SELECCIONE")
-		{document.form1.cuotas3.value = '';}
-	else
-		{document.form1.cuotas3.value = textoEscogido;}
-    
-        var indice5 = document.form1.asesor2.selectedIndex; 
-    var textoEscogido = document.form1.asesor2.options[indice5].text; 
-	if (textoEscogido=="SELECCIONE")
-		{document.form1.asesor3.value = '';}
-	else
-		{document.form1.asesor3.value = textoEscogido;}
-                
+		{document.form1.id_usuario2.value = textoEscogido;}
 	document.form1.submit();
 }
 
