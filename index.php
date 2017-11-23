@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="es"> 
-<head>
-	<meta charset="utf-8">
-	<title>Numeros</title>
-
-</head>
-<body>
-	<form action="lista.php" name="Seleccion de lista" id="formulariolista">
-		Seleccione archivo: <input type="text" name="Ubicación de lista" id="lista"> <br>
-		Producto: <select name="Producto" id="iddeproducto"> 
-        <option value="0">Eliga su producto:</option>
-        <?php	include ('conexion.php');
-          $query = $con -> query ("SELECT * FROM productos");								
-          while ($valores = mysqli_fetch_array($query)) {
-            echo '<option value="'.$valores['idproducto'].'">'.$valores['Producto'].'</option>';
-          }
-        ?>
-		</select> <br>
-		<input type="submit" value="Enviar"> <br>
-
-	</form>
-</body>
+<html lang="es-ES">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Identifiquese</title>
+   </head>
+   
+    <body>
+        <center>
+            <img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
+            <h3 style="color:blue;">ACCESO CRM SEPFIN - IDENTIFIQUESE</h3>
+    <table>
+        <form action="validar.php" method="POST">
+        <tr> <td>Usuario</td>
+            <td><input type="text" name="usuario" placeholder="Usuario" required></td>
+            </tr>
+            <tr>
+                <td>Contraseña</td>
+                <td><input type="password" name="pass" placeholder="Contraseña" required></td>
+                <tr><th colspan="2"><br><input type="submit" value="Entrar"></th></tr>
+            </form>
+            </tr>   
+    </table>
+        </center>
+    </body>
 </html>
