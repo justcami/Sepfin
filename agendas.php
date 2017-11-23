@@ -8,30 +8,30 @@ include ('conexion.php');
     echo $user."<br>";
 ?>
  
-<?php  
+<?php
+$base= $_POST['Producto2'];
+$connect = mysql_connect("localhost","root",""); 
+mysql_select_db("sepfin",$connect);
+if ($_FILES[csv][size] > 0) { 
 
-//$connect = mysql_connect("localhost","root",""); 
-//mysql_select_db("contacts",$connect);
-
-//if ($_FILES[csv][size] > 0) { 
-
-//    $file = $_FILES[csv][tmp_name]; 
-//    $handle = fopen($file,"r"); 
+    $file = $_FILES[csv][tmp_name]; 
+    $handle = fopen($file,"r"); 
      
-//    do { 
-//        if ($data[0]) { 
-//            mysql_query("INSERT INTO contacts (contact_first, contact_last, contact_email) VALUES 
-//                ( 
-//                    '".addslashes($data[0])."', 
-//                    '".addslashes($data[1])."', 
-//                    '".addslashes($data[2])."' 
-//                ) 
-//            "); 
-//        } 
-//    } while ($data = fgetcsv($handle,1000,",","'")); 
-//    header('Location: agendas.php?success=1'); die; 
+    do { 
+        if ($data[0]) { 
+            mysql_query("INSERT INTO $base (idproducto, Nombre, Apellido, Telefono) VALUES 
+                ( 
+                    '', 
+                    '".addslashes($data[0])."', 
+                    '".addslashes($data[1])."',
+					'".addslashes($data[2])."'					
+                ) 
+            "); 
+        } 
+    } while ($data = fgetcsv($handle,1000,",","'")); 
+    header('Location: agendas.php?success=1'); die; 
 
-//} 
+} 
 
 ?>
     <a href="logout.php">Cerrar Sesion</a><br>
@@ -40,13 +40,20 @@ include ('conexion.php');
 	<!DOCTYPE html>
 <html lang="es"> 
 <head>
-	<meta charset="utf-8">
-	<title>Numeros</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="css2/estilo.css" rel="stylesheet">
+        <script src="js2/jquery.js"></script>
+        <script src="js2/myjava.js"></script>
+	<title>Contactos de Productos</title>
 
 </head>
 <body>
-<?php if (!empty($_GET[success])) { echo "<b>Your file has been imported.</b><br><br>"; }//generic success notice ?>
-<form action="" method="post" enctype="multipart/form-data" name="Selecciondelista" id="formlista"> 
+<?php if (!empty($_GET[success])) { echo "<script> alert('Numeros Importados Exitosamente'); location.href='main.php'; </script>"; }//generic success notice 
+?>
+
+		<form action="" method="post" enctype="multipart/form-data" name="Selecciondelista" id="Selecciondelista" onsubmit="return dimePropiedades2()">
+		<input type="hidden" name="Producto2" /> 
+		
 		Archivo: <input name="csv" type="file" id="csv" /> <br><br>
 		Producto: <select name="Producto" id="iddeproducto"> 
         <option value="0">Eliga su producto:</option>
