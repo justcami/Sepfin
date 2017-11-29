@@ -5,7 +5,7 @@ include ('conexion.php');
 ?>
 <?php 
     echo "<b>Bienvenido: </b>";
-    echo $user."<br>";
+    echo $nuusuario."<br>";
 ?>
  
 
@@ -16,9 +16,6 @@ include ('conexion.php');
 <html lang="es"> 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link href="css2/estilo.css" rel="stylesheet">
-        <script src="js2/jquery.js"></script>
-        <script src="js2/myjava.js"></script>
 	<title>Contactos de Productos</title>
 
 </head>
@@ -49,3 +46,4 @@ if (!empty($_GET[success])) { echo "<script> alert('Se cargaron los archivos exi
 	</form>
 </body>
 </html>
+<?php include("templates/footer.php"); ?>
