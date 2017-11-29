@@ -25,7 +25,16 @@ include("seguridad.php");
     Perfil: <select name="perfil">
             <option>Administrador</option>
             <option>Agente</option>
-        </select><br><br>
+        </select><br>
+	Producto: <select name="Producto" id="Producto"> 
+        <option value="0">Asigne un producto:</option>
+        <?php	
+          $query = $con -> query ("SELECT * FROM productos");								
+          while ($valores = mysqli_fetch_array($query)) {
+            echo '<option value="'.$valores['idproducto'].'">'.$valores['Producto'].'</option>';
+          }
+        ?> 
+		</select> <br><br>	
 	<input type="submit" value="Enviar" align="right">
     </form>
    </section></td>
@@ -33,3 +42,4 @@ include("seguridad.php");
 </table>
    </body>
 </html>
+<?php include("templates/footer.php"); ?>

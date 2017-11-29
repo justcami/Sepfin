@@ -3,7 +3,7 @@ include("seguridad.php");
 ?>
 <?php 
             echo "<b>Bienvenido: </b>";
-            echo $user."<br>";
+            echo $nuusuario."<br>";
             ?>
             <a href="logout.php">Cerrar Sesion</a><br><br><br>
 			
@@ -36,3 +36,4 @@ include("seguridad.php");
    </table>
 </body>
 </html>
+<?php include("templates/footer.php"); ?>

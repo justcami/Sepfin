@@ -1,11 +1,11 @@
 <?php 
 include("seguridad.php");
 include 'conexion3.php';
+include 'conexion.php';
 
 $id_usuario = $_REQUEST['id_usuario'];
 
-
-$sel = $con ->query("SELECT * FROM usuarios WHERE id_usuario='$id_usuario' ");
+$sel = $con3 ->query("SELECT * FROM usuarios WHERE id_usuario='$id_usuario'");
 if ($fila = $sel ->fetch_assoc()){
 }
 ?>
@@ -33,7 +33,20 @@ if ($fila = $sel ->fetch_assoc()){
     Nombre y Apellido: <input type="text" name="NombreyApellido" value="<?php echo $fila['Nombre'] ?>"><br> 
 	Usuario: <input type="text" name="usuario" value="<?php echo $fila['usuario'] ?>"><br>
     Contrasena: <input type="text" name="passw" value="<?php echo $fila['contrasena'] ?>"><br>
-    Perfil: <input type="text" name="nivel" value="<?php echo $fila['Nivel_Usuario'] ?>"><br>
+    Perfil: <select name="perfil">
+            <option>Administrador</option>
+            <option>Agente</option>
+        </select><br>
+	Producto: <select name="Producto" id="Producto"> 
+        <option value="0">Asigne un producto:</option>
+        <?php	
+          $query = $con -> query ("SELECT * FROM productos");								
+          while ($valores = mysqli_fetch_array($query)) {
+            echo '<option value="'.$valores['idproducto'].'">'.$valores['Producto'].'</option>';
+          }
+        ?> 
+		</select> <br><br>
+	<input type="submit" value="Enviar" align="right">
     
     <input type="submit" value="Actualizar" align="right">
     </form>

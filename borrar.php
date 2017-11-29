@@ -3,7 +3,7 @@ include("seguridad.php");
 include 'conexion3.php';
 
 $id_usuario = $_REQUEST['id_usuario'];
-$del = $con ->query("DELETE FROM usuarios WHERE id_usuario='$id_usuario' ");
+$del = $con3 ->query("DELETE FROM usuarios WHERE id_usuario='$id_usuario' ");
 
 if ($del) {
     echo "<script>
