@@ -24,7 +24,9 @@ $tabla = "create table ".$producto."(
 idproducto int(11) PRIMARY KEY AUTO_INCREMENT,
 Nombre varchar(200) NOT NULL,
 Apellido varchar(200) NOT NULL,
-Telefono varchar(12) NOT NULL);";
+Telefono varchar(12) NOT NULL,
+EstadoRegistro varchar(200) NOT NULL);";
+
 $crear_tabla = $con -> query ($tabla);
 
 if ($crear_tabla) {

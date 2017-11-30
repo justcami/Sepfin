@@ -17,30 +17,31 @@ $busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'"
 					$rowproducto = $rowproducto['Producto'];
 					#etc.
 if($busqueda==""){
+
+$Disponible="";	
 	
 		switch($_POST['filtro']){
 			case $busqueda:
-				$sql = "select * from $rowproducto";
+				$sql = "select * from $rowproducto WHERE EstadoRegistro='$Disponible'";
 				break;					
 }
  }else{			
 	if(isset($_POST['filtro'])){
 		switch($_POST['filtro']){
 			case $busqueda:
-				$sql = "select * from $rowproducto WHERE Nombre='$busqueda' OR Apellido='$busqueda' OR Telefono='$busqueda'";
+				$sql = "select * from $rowproducto WHERE EstadoRegistro='$Disponible' AND Nombre='$busqueda' OR Apellido='$busqueda' OR Telefono='$busqueda'";
 				break;					
 				}
 	}else{
-		$sql = "select * from $rowproducto.;";
+		$sql = "select * from $rowproducto WHERE EstadoRegistro='$Disponible'";
 			}}}}
 ?>
-<?php 
+		<?php 
             echo "<b>Bienvenido: </b>";
             echo $nuusuario."<br>";
-?>
-			<a href="logout.php">Cerrar Sesion</a><br>			
-
-			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            ?>	
+            <a href="logout.php">Cerrar Sesion</a><br>			
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -48,17 +49,6 @@ if($busqueda==""){
 <link href="css2/estilo.css" rel="stylesheet">
 <script src="js2/jquery.js"></script>
 <script src="js2/myjava.js"></script>  
-<script language="JavaScript">
-function aviso(url){
-if (!confirm("ADVERTENCIA!!  Va a editar un producto, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.")) {
-return false;
-}
-else {
-document.location = url;
-return true;
-}
-}
-</script> 
    </head>
    <body>         
 <center>
@@ -102,7 +92,7 @@ return true;
             <th>Telefono</th>
 			<th>Editar</th>
                  <?php
-		$result = $con->query($sql);
+		$result = $con->query($sql);//Con esta consultado traigo todos los campos de la tabla productos escogida o asignada
 		if(!$result )
 		{
 		 	die('Ocurrio un error al obtener los valores de la base de datos: ' . mysql_error());
@@ -114,7 +104,12 @@ return true;
             <td align="cente"><?php echo $row['Nombre'] ?></td>
             <td align="center"><?php echo $row['Apellido'] ?></td>
 			<td align="center"><?php echo $row['Telefono'] ?></td>
-			<td align="center"><a href="javascript:;" onclick="aviso('/Sepfin/editprousuario.php?idproducto=<?php echo $row['idproducto']?>'); return false;">EDITAR</a></td>
+			<td align="center">
+			<form action="/Sepfin/editprousuario.php" method="POST" onsubmit="return confirm('ADVERTENCIA!!  Va a editar un producto, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.');">
+			<input type="hidden" name="idproducto" method="post" value="<?php echo $row['idproducto']?>">
+			<button type="submit">EDITAR</button>
+			</form>	
+			</td>
 		</tr>
             <?php } ?>
         </table>

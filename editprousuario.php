@@ -14,13 +14,28 @@ $busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'"
 				while ($rowproducto = $busprod->fetch_assoc()) 
 				{ //Ya podemos trabajos con nuestros datos.        
 					$rowproducto = $rowproducto['Producto'];
-					#etc.
+					#etc.	
 
-//$sel = $con ->query("SELECT * FROM $rowproducto WHERE dproducto='$dproducto'");
-//if ($fila = $sel ->fetch_assoc()){
+$estadoregistro = $con -> query ("SELECT EstadoRegistro FROM $rowproducto WHERE idproducto='$idproducto'");
+			$row_cnt2 = $estadoregistro->num_rows;
+			if ($row_cnt2 > 0) 
+			{
+			//Recuperamos una fila de resultados como un array asociativo.
+				while ($rowestadoregistro = $estadoregistro->fetch_assoc()) 
+				{ //Ya podemos trabajos con nuestros datos.        
+					$rowestadoregistro = $rowestadoregistro['EstadoRegistro'];
+					#etc.
+	
+	if($rowestadoregistro=="Ocupado"){
+	echo "<script>
+        alert('El Registro esta en uso por otro Usuario');
+        location.href='gestion.php';
+        </script>";
+			}else{	
 	$sql = "select * from $rowproducto WHERE idproducto='$idproducto'";
-}
-			}
+	$Ocupado="Ocupado";
+	$up = $con -> query ("UPDATE $rowproducto SET EstadoRegistro='$Ocupado' WHERE idproducto='$idproducto'");
+			}}}
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -30,8 +45,15 @@ $busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'"
    </head>
    <body>
 <br>
-            <a href="gestion.php">Regresar Sin Realizar Cambios</a>   
+
+<form action="/Sepfin/dejarregistrolibre.php" method="POST" onsubmit="return confirm('Esta Seguro de que no quiere realizar cambios?');">
+<input type="hidden" name="productor" method="post" value="<?php echo $rowproducto?>">
+<input type="hidden" name="idproductor" method="post" value="<?php echo $idproducto?>">
+<button type="submit">Regresar Sin Realizar Cambios</button>
+</form>
+
    <header>
+   <?php }}  ?>
        <img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>      
        <p> EDICION DE REGISTROS </p>
    </header>
@@ -40,7 +62,6 @@ $busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'"
             <tr>
             <td colspan="4" align="center" bgcolor="blue"><font color="#FFFFFF"><strong>
 			Su Producto Asignado es: <?php
-			
 			$busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'");
 			$row_cnt = $busprod->num_rows;
 			if ($row_cnt > 0) 

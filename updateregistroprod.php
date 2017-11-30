@@ -7,6 +7,7 @@ $idproducto = $_REQUEST['ProductoID'];
 $nombre = $_POST['Nombre'];
 $apellido = $_POST['Apellido'];
 $tel = $_POST['Telefono'];
+$Libre = "";
 
 //echo $producto;
 //Buscar la tabla asignada al usuario
@@ -20,7 +21,7 @@ $busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'"
 					$rowproducto = $rowproducto['Producto'];
 					#etc.
 
-$up = $con -> query ("UPDATE $rowproducto SET idproducto='$idproducto',Nombre='$nombre',Apellido='$apellido',Telefono='$tel'
+$up = $con -> query ("UPDATE $rowproducto SET idproducto='$idproducto',Nombre='$nombre',Apellido='$apellido',Telefono='$tel',EstadoRegistro='$Libre'
 WHERE idproducto='$idproducto'");
 if ($up) {
 
