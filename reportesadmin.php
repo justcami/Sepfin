@@ -6,7 +6,7 @@ error_reporting (0);
 ?>
 <?php 
 $Producto = $_REQUEST['Producto'];
-
+$busqueda=$_POST['filtro'];
 if($busqueda==""){
 	
 		switch($_POST['filtro']){
@@ -51,7 +51,7 @@ return true;
             <h3 style="color:blue;">REPORTES DE PRODUCTOS</h3>
 </center>
 <div id="filtros" align="center">
-<form action="gestion.php" method="POST">
+<form action="reportesadmin.php?Producto=<?php echo $Producto;?>" method="POST">
 <b>Que quiere buscar </b><input type="text" name="filtro" placeholder="Filtro" method="post">            
 <button type="submit">Filtrar</button>
 </form>
