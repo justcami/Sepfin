@@ -5,7 +5,12 @@ $producto = $_REQUEST['productor'];
 $idproducto = $_REQUEST['idproductor'];
 $Libre="";
 
-$up = $con -> query ("UPDATE $producto SET EstadoRegistro='$Libre'
+$phrase = $producto;
+				$espacio = array(" ");
+				$sin   = array("");
+$newphrase = str_replace($espacio, $sin, $phrase);
+
+$up = $con -> query ("UPDATE $newphrase SET EstadoRegistro='$Libre'
 WHERE idproducto='$idproducto'");
 
 if ($up) {
@@ -15,9 +20,9 @@ echo
         </script>";
 }else{
     
-	echo "epa";
+	echo
 		"<script>
-        alert('Algo Paso');
+        alert('Epa!! Algo Paso');
         location.href='gestion.php';
         </script>"; 
 }

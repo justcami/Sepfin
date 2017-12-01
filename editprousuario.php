@@ -15,8 +15,12 @@ $busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'"
 				{ //Ya podemos trabajos con nuestros datos.        
 					$rowproducto = $rowproducto['Producto'];
 					#etc.	
-
-$estadoregistro = $con -> query ("SELECT EstadoRegistro FROM $rowproducto WHERE idproducto='$idproducto'");
+$phrase = $rowproducto;
+				$espacio = array(" ");
+				$sin   = array("");
+$newphrase = str_replace($espacio, $sin, $phrase);
+					
+$estadoregistro = $con -> query ("SELECT EstadoRegistro FROM $newphrase WHERE idproducto='$idproducto'");
 			$row_cnt2 = $estadoregistro->num_rows;
 			if ($row_cnt2 > 0) 
 			{
@@ -32,9 +36,9 @@ $estadoregistro = $con -> query ("SELECT EstadoRegistro FROM $rowproducto WHERE 
         location.href='gestion.php';
         </script>";
 			}else{	
-	$sql = "select * from $rowproducto WHERE idproducto='$idproducto'";
+	$sql = "select * from $newphrase WHERE idproducto='$idproducto'";
 	$Ocupado="Ocupado";
-	$up = $con -> query ("UPDATE $rowproducto SET EstadoRegistro='$Ocupado' WHERE idproducto='$idproducto'");
+	$up = $con -> query ("UPDATE $newphrase SET EstadoRegistro='$Ocupado' WHERE idproducto='$idproducto'");
 			}}}
 ?>
 

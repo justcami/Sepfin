@@ -22,18 +22,30 @@ $Disponible="";
 	
 		switch($_POST['filtro']){
 			case $busqueda:
-				$sql = "select * from $rowproducto WHERE EstadoRegistro='$Disponible'";
+				$phrase = $rowproducto;
+				$espacio = array(" ");
+				$sin   = array("");
+				$newphrase = str_replace($espacio, $sin, $phrase);
+				$sql = "select * from $newphrase WHERE EstadoRegistro='$Disponible'";
 				break;					
 }
  }else{			
 	if(isset($_POST['filtro'])){
 		switch($_POST['filtro']){
 			case $busqueda:
-				$sql = "select * from $rowproducto WHERE EstadoRegistro='$Disponible' AND Nombre='$busqueda' OR Apellido='$busqueda' OR Telefono='$busqueda'";
+				$phrase = $rowproducto;
+				$espacio = array(" ");
+				$sin   = array("");
+				$newphrase = str_replace($espacio, $sin, $phrase);
+				$sql = "select * from $newphrase WHERE EstadoRegistro='$Disponible' AND Nombre='$busqueda' OR Apellido='$busqueda' OR Telefono='$busqueda'";
 				break;					
 				}
 	}else{
-		$sql = "select * from $rowproducto WHERE EstadoRegistro='$Disponible'";
+				$phrase = $rowproducto;
+				$espacio = array(" ");
+				$sin   = array("");
+				$newphrase = str_replace($espacio, $sin, $phrase);
+				$sql = "select * from $newphrase WHERE EstadoRegistro='$Disponible'";
 			}}}}
 ?>
 		<?php 

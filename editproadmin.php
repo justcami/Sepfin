@@ -9,7 +9,12 @@ $idproducto = $string[0];
 
 $Producto = substr(strstr($_REQUEST['idproducto'], '='), 1);
 
-	$sql = "select * from $Producto WHERE idproducto='$idproducto'";
+$phrase  = $Producto;
+$espacio = array(" ");
+$sin   = array("");
+$newphrase = str_replace($espacio, $sin, $phrase);
+
+$sql = "select * from $newphrase WHERE idproducto='$idproducto'";
 
 ?>
 

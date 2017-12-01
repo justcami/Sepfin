@@ -13,10 +13,13 @@ $tborrar = $con -> query ("SELECT * FROM productos WHERE idproducto='$idproducto
 				{ //Ya podemos trabajos con nuestros datos.        
 					$rowproducto = $rowproducto['Producto'];
 					$str = strtolower($rowproducto);
-					//echo $str;
-					$del2 = $con ->query("DROP TABLE $str;");
+					$phrase = $str;
+				$espacio = array(" ");
+				$sin   = array("");
+				$newphrase = str_replace($espacio, $sin, $phrase);
+					$del2 = $con ->query("DROP TABLE $newphrase;");
 				}
-			}	
+			}			
 
 $del = $con ->query("DELETE FROM productos WHERE idproducto='$idproducto' ");
 

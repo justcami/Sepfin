@@ -11,18 +11,22 @@ if($busqueda==""){
 	
 		switch($_POST['filtro']){
 			case $busqueda:
-				$sql = "select * from $Producto";
+				$phrase = $Producto;
+				$espacio = array(" ");
+				$sin   = array("");
+				$newphrase = str_replace($espacio, $sin, $phrase);
+				$sql = "select * from $newphrase";
 				break;					
 }
  }else{			
 	if(isset($_POST['filtro'])){
 		switch($_POST['filtro']){
 			case $busqueda:
-				$sql = "select * from $Producto WHERE Nombre='$busqueda' OR Apellido='$busqueda' OR Telefono='$busqueda'";
+				$sql = "select * from $newphrase WHERE Nombre='$busqueda' OR Apellido='$busqueda' OR Telefono='$busqueda' OR Usuario='$busqueda'";
 				break;					
 				}
 	}else{
-		$sql = "select * from $Producto.;";
+		$sql = "select * from $newphrase.;";
 			}}
 ?>
 			
@@ -73,6 +77,7 @@ return true;
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Telefono</th>
+			<th>Usuario</th>
 			<th>Editar</th>
                  <?php
 		$result = $con->query($sql);
@@ -87,6 +92,7 @@ return true;
             <td align="cente"><?php echo $row['Nombre'] ?></td>
             <td align="center"><?php echo $row['Apellido'] ?></td>
 			<td align="center"><?php echo $row['Telefono'] ?></td>
+			<td align="center"><?php echo $row['Usuario'] ?></td>
 			<td align="center"><a href="javascript:;" onclick="aviso('/Sepfin/editproadmin.php?idproducto=<?php echo $row['idproducto']?>?Producto=<?php echo $Producto?>'); return false;">EDITAR</a></td>
 		</tr>
             <?php } ?>

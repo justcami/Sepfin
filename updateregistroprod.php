@@ -9,7 +9,6 @@ $apellido = $_POST['Apellido'];
 $tel = $_POST['Telefono'];
 $Libre = "";
 
-//echo $producto;
 //Buscar la tabla asignada al usuario
 $busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'");
 			$row_cnt = $busprod->num_rows;
@@ -20,8 +19,13 @@ $busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'"
 				{ //Ya podemos trabajos con nuestros datos.        
 					$rowproducto = $rowproducto['Producto'];
 					#etc.
+					
+$phrase  = $rowproducto;
+$espacio = array(" ");
+$sin   = array("");
+$newphrase = str_replace($espacio, $sin, $phrase);					
 
-$up = $con -> query ("UPDATE $rowproducto SET idproducto='$idproducto',Nombre='$nombre',Apellido='$apellido',Telefono='$tel',EstadoRegistro='$Libre'
+$up = $con -> query ("UPDATE $newphrase SET idproducto='$idproducto',Nombre='$nombre',Apellido='$apellido',Telefono='$tel',EstadoRegistro='$Libre', Usuario='$user'
 WHERE idproducto='$idproducto'");
 if ($up) {
 

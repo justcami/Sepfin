@@ -9,8 +9,13 @@ $apellido = $_POST['Apellido'];
 $tel = $_POST['Telefono'];
 $Producto = $_REQUEST['Producto'];
 
+$phrase  = $Producto;
+$espacio = array(" ");
+$sin   = array("");
+$newphrase = str_replace($espacio, $sin, $phrase);
 
-$up = $con -> query ("UPDATE $Producto SET idproducto='$idproducto',Nombre='$nombre',Apellido='$apellido',Telefono='$tel'
+
+$up = $con -> query ("UPDATE $newphrase SET idproducto='$idproducto',Nombre='$nombre',Apellido='$apellido',Telefono='$tel'
 WHERE idproducto='$idproducto'");
 if ($up) {
 
