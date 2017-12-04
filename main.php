@@ -27,8 +27,8 @@ include("seguridad.php");
      <tr align="center">
        <th scope="col"><a href="productos.php">Productos</a></th>
      </tr>
-	 <tr align="center"> 
-       <th scope="col"><a href="agendas.php">Agendas</a></th>       
+	 <tr align="center">
+       <th scope="col"><a href="reporteagendamientos.php">Agendamientos</a></th>
      </tr>
 	 <tr align="center"> 
        <th scope="col" width="70%"><a href="usuarios.php/">Usuarios</a></th>      

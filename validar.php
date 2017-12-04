@@ -46,25 +46,31 @@ include("conexion3.php");
                     $_SESSION["pass"] = $pass;
 					$_SESSION['Nombre'] = $row->Nombre;
 					$_SESSION['nuser'] = $row->Nivel_Usuario;
+					$_SESSION['producto'] = $row->producto;
 					$nombreu=$row->Nombre;
+					$producto=$row->producto;
 					$ns=$row->Nivel_Usuario; // descargo el niver de usuario
+					//Nombro las tablas de los productos
+					$Prestamos = "Prestamos Personales";
+					$Compra = "Compra de Cartera";
+					$Venta = "Venta de Tarjetas";
 				
  if($ns==0){ // relizo la comparacion para saber a q menu de usuario me va direcionar si es NivelUsuario 1 va al pagina inicio administrador
             header("refresh:0.1 ;url=main.php");
-}else{header("refresh:0.1 ;url=gestion.php"); // si el NivelUsuario es mayor o diferente a 1 va la pagina inicio del usuario normal
-}
-            }else{
+}else if($ns==1 AND $producto==$Prestamos){
+header("refresh:0.1 ;url=/Sepfin/prestamospersonales/gestion.php"); // si el NivelUsuario es mayor o diferente a 1 va la pagina inicio del usuario normal
+}else if($ns==1 AND $producto==$Compra){
+header("refresh:0.1 ;url=/Sepfin/compradecartera/gestion.php"); // si el NivelUsuario es mayor o diferente a 1 va la pagina inicio del usuario normal	
+}else if($ns==1 AND $producto==$Venta){
+header("refresh:0.1 ;url=/Sepfin/ventadetarjetas/gestion.php"); // si el NivelUsuario es mayor o diferente a 1 va la pagina inicio del usuario normal
+			}}else{
         echo"<script language='javascript'>alert('Error En el Usuario o Contraseña Intente de Nuevo'); </script>";
             header("refresh:0.1 ;url=agregarlogerroneo.php?usuario=$usuario");
-    }
+    }}
             exit();
         }
-		}else{
-			echo"<script language='javascript'>alert('Error, el Usuario ingresado no Existe, Intente de Nuevo'); </script>";
-            header("refresh:0.1 ;url=index.php");
 			}
-			}}}
-			}else
+			}}}else
 			{
 			echo"<script language='javascript'>alert('Error, el Usuario ingresado no existe, Intente de Nuevo'); </script>";
             header("refresh:0.1 ;url=index.php");

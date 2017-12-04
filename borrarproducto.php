@@ -17,19 +17,18 @@ $tborrar = $con -> query ("SELECT * FROM productos WHERE idproducto='$idproducto
 				$espacio = array(" ");
 				$sin   = array("");
 				$newphrase = str_replace($espacio, $sin, $phrase);
-					$del2 = $con ->query("DROP TABLE $newphrase;");
+					$del2 = $con ->query("TRUNCATE TABLE $newphrase;");
 				}
 			}			
 
-$del = $con ->query("DELETE FROM productos WHERE idproducto='$idproducto' ");
-
-if ($del) {
+if ($del2) {
     echo "<script>
+	   alert('Los registros se eliminaron correctamente');	
         location.href='/Sepfin/productos.php';
         </script>";
 }else{
     echo "<script>
-       alert('El registro no pudo ser eliminado');
+       alert('Los registros no pudieron ser eliminados');
         location.href='/Sepfin/productos.php';
         </script>"; 
 }

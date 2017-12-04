@@ -2,10 +2,10 @@
 
 session_start();?>
 <?php include 'conexion.php';
-$compra="Compra de Cartera";
+$venta="Venta de Tarjetas"; 
 if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"]==null || 
    !isset($_SESSION["pass"]) || $_SESSION["pass"]==null ||
-   !isset($_SESSION["producto"]) || $_SESSION["producto"]!=$compra
+   !isset($_SESSION["producto"]) || $_SESSION["producto"]!=$venta
 )
    {
         print "<script>alert(\"Acceso Invalido\");window.location='/Sepfin/index.php';</script>";
@@ -13,5 +13,5 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"]==null ||
    
    $user = $_SESSION["usuario"];
    $pass = $_SESSION["pass"];
-   $nuusuario = $_SESSION['Nombre'];   
+   $nuusuario = $_SESSION['Nombre'];  
 ?>

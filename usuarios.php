@@ -98,8 +98,8 @@ return true;
 			echo "<a href=/Sepfin/desbloqueouser.php?usuario=$us>$estadobloq</a>";} 
 			?>
 			</td>
-            <td align="center"><a href="../actualizar.php?id_usuario=<?php echo $fila['id_usuario'] ?>">EDITAR</a></td>
-			<td align="center"><a href="javascript:;" onclick="aviso('../borrar.php?id_usuario=<?php echo $fila['id_usuario']?>'); return false;">ELIMINAR</a></td>
+            <td align="center"><a href="../actualizarusuario.php?id_usuario=<?php echo $fila['id_usuario'] ?>">EDITAR</a></td>
+			<td align="center"><a href="javascript:;" onclick="aviso('../borrarusuario.php?id_usuario=<?php echo $fila['id_usuario']?>'); return false;">ELIMINAR</a></td>
             <!--<td align="center"><a href="javascript:;" onclick="aviso('borrar.php?id_usuario=<?php echo $fila['id_usuario']?>'); return false;">eliminar</a></td>
 			-->
 		</tr>

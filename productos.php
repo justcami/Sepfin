@@ -51,22 +51,34 @@ return true;
 	
 </head>
 <body>
-	<form action="guardarproductos.php" name="nombredeproducto" id="formularioproducto" method="post">
-		Nombre Producto: <input type="text" name="NombredeProducto" id="producto"> <br>
-		Descripción: <input type="text" name="Descripcion" id="descripcion"> <br>
+<?php 
+if (!empty($_GET[success])) { echo "<script> alert('Se cargaron los archivos exitosamente!'); location.href='productos.php'; </script>"; }//generic success notice 
+?>
+
+		<form action="prueba.php" method="post" enctype="multipart/form-data" name="Selecciondelista" id="Selecciondelista" onsubmit="return dimePropiedades2()">
+		<input type="hidden" name="Producto2" /> 
+		<b><h>CARGAR CONTACTOS A LOS PRODUCTOS</h1></b><br><br>
+        Archivo: <input name="csv" type="file" id="csv" /> <br><br>
+		Producto: <select name="Producto" id="Producto"> 
+        <option value="0">Eliga su producto:</option>
+        <?php	
+          $query = $con -> query ("SELECT * FROM productos");								
+          while ($valores = mysqli_fetch_array($query)) {
+            echo '<option value="'.$valores['idproducto'].'">'.$valores['Producto'].'</option>';
+          }
+        ?>  
+
+		</select> <br><br>
 		<input type="submit" value="Enviar"> <br>
 
 	</form>
 <div id="filtros" align="center">
-<form action="productos.php" method="POST">
-<b>Producto a buscar </b><input type="text" name="filtro" placeholder="Que quiero buscar" method="post">            
-<button type="submit">Filtrar</button>
-</form>
+<h1><b>Productos Sepfin</b></h1>
 </div>
 	<table align="center" cellspacing="5" cellpadding="5" border="3" border="1" bgcolor=dddddd>   
             <th>Producto</th>
             <th>Descripcion</th>
-            <th>Eliminar</th>
+            <th>Eliminar Registros</th>
          <?php
 		$result = $con->query($sql);
 		if(!$result )
@@ -78,8 +90,24 @@ return true;
          ?>
 		<tr>
 		
-            
-			<td align="cente"><a href="reportesadmin.php?Producto=<?php echo $row['Producto']?>"><?php echo $row['Producto'] ?></a></td>
+            <?php
+			$Producto=$row['Producto'];
+			$Pres="Prestamos Personales";
+			$Com="Compra de Cartera";
+			$Ven="Venta de Tarjetas";
+			if($Producto==$Pres){
+			?> 
+			<td align="center"><a href="reporteprestamos.php"><?php echo $row['Producto']?></a></td>
+			<?php
+			} else if($Producto==$Com){
+			?>
+			<td align="center"><a href="reportecompracartera.php"><?php echo $row['Producto']?></a></td>
+			<?php
+			} else if($Producto==$Ven) {
+			?>
+			<td align="center"><a href="reporteventastdc.php"><?php echo $row['Producto']?></a></td>
+			<?php } ?>
+			
             <td align="center"><?php echo $row['Descripcion'] ?></td>
 			<td align="center"><a href="javascript:;" onclick="aviso('/Sepfin/borrarproducto.php?idproducto=<?php echo $row['idproducto']?>'); return false;">ELIMINAR</a></td>
 		</tr>
