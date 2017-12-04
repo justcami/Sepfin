@@ -37,24 +37,19 @@ if($busqueda==""){
 	text-align: center;
 	background-color:LAVENDER;
    }
+   
 table tr:nth-child(even) {
-    background-color: #eee;
+	background-color: #eee;
 }
  
 table tr:nth-child(odd) {
-    background-color: #fff;
+	background-color: #fff;
 }
 
 table {
-	height:1;
-	font-size: 14px;
+	width: 3000;
+	font-size: 12px;
 }
-
-table td:nth-child(even) {
-	height:1;
-	font-size: 14px;
-}
-
 -->
 </style>
 <title>REPORTES VENTAS DE TARJETAS DE CREDITO</title>

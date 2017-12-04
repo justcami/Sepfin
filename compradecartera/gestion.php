@@ -58,6 +58,27 @@ $Disponible="";
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+<!--
+.inputcentrado {
+	text-align: center;
+	background-color:LAVENDER;
+   }
+   
+table tr:nth-child(even) {
+	background-color: #eee;
+}
+ 
+table tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+table {
+	width: 5000;
+	font-size: 12px;
+}
+-->
+</style>
 <title>GESTION DE PRODUCTOS SEPFIN</title>
 <link href="css2/estilo.css" rel="stylesheet">
 <script src="js2/jquery.js"></script>
@@ -77,10 +98,8 @@ $Disponible="";
    <?php
    //<p>&nbsp;</p>
    ?>
-        <table align="center" cellspacing="5" cellpadding="5" border="3" border="1" bgcolor=dddddd>
-            <tr>
-            <td colspan="4" align="center" bgcolor="blue"><font color="#FFFFFF"><strong>
-			Su Producto Asignado es: <?php
+<center style="color:blue"><strong>
+			Producto Asignado <?php
 			
 			$busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'");
 			$row_cnt = $busprod->num_rows;
@@ -95,12 +114,12 @@ $Disponible="";
 					echo $str;
 			}}
 			?>
-			</strong></font></td>
-            </tr>
-        </table> <br>
+			</strong></center>
+        <br>
 		
- <table align="center" cellspacing="5" cellpadding="5" border="3" border="1" bgcolor=dddddd>   
-            <th>CEDULA</th>
+ <table align="center" cellspacing="5" cellpadding="5" border="3" border="1">   
+            <tr align="center">
+			<th>CEDULA</th>
             <th>NOMBRE</th>
             <th>TASA</th>
 			<th>EXTRACUPO</th>
@@ -135,6 +154,7 @@ $Disponible="";
 			<th>DETALLE TIPIFICACION</th>
 			<th>VENDEDOR</th>
 			<th>Editar</th>
+			</tr>
                  <?php
 		$result = $con->query($sql);//Con esta consultado traigo todos los campos de la tabla productos escogida o asignada
 		if(!$result )
@@ -144,42 +164,42 @@ $Disponible="";
 		while ($row = $result->fetch_assoc())
 		{			
          ?>
-		<tr>
-            <td align="cente" ><?php echo $row['cedula'] ?></td>
-            <td align="center"><?php echo $row['nombre'] ?></td>
-			<td align="center"><?php echo $row['tasa'] ?></td>
-			<td align="center">$<?php echo $row['extracupo'] ?></td>
-			<td align="center">$<?php echo $row['cupodispo'] ?></td>
-			<td align="center"><?php echo $row['potencialtdc'] ?></td>
-			<td align="center"><?php echo $row['tel1'] ?></td>
-			<td align="center"><?php echo $row['tel2'] ?></td>
-			<td align="center"><?php echo $row['tel3'] ?></td>
-			<td align="center"><?php echo $row['tel4'] ?></td>
-			<td align="center"><?php echo $row['tel5'] ?></td>
-			<td align="center"><?php echo $row['tel6'] ?></td>
-			<td align="center"><?php echo $row['tel7'] ?></td>
-			<td align="center"><?php echo $row['tel8'] ?></td>
-			<td align="center"><?php echo $row['tel9'] ?></td>
-			<td align="center"><?php echo $row['tel10'] ?></td>
-			<td align="center"><?php echo $row['tel11'] ?></td>
-			<td align="center"><?php echo $row['tel12'] ?></td>
-			<td align="center"><?php echo $row['tel13'] ?></td>
-			<td align="center"><?php echo $row['tel14'] ?></td>
-			<td align="center"><?php echo $row['tel15'] ?></td>
-			<td align="center"><?php echo $row['tel16'] ?></td>
-			<td align="center"><?php echo $row['tel17'] ?></td>
-			<td align="center"><?php echo $row['tel18'] ?></td>
-			<td align="center"><?php echo $row['tel19'] ?></td>
-			<td align="center"><?php echo $row['tel20'] ?></td>
-			<td align="center"><?php echo $row['tel21'] ?></td>
-			<td align="center"><?php echo $row['tel22'] ?></td>
-			<td align="center"><?php echo $row['motivo1'] ?></td>
-			<td align="center"><?php echo $row['motivo2'] ?></td>
-			<td align="center"><?php echo $row['motivo3'] ?></td>
-			<td align="center"><?php echo $row['tipificacion'] ?></td>
-			<td align="center"><?php echo $row['detalletipi'] ?></td>
-			<td align="center"><?php echo $row['Usuario'] ?></td>
-			<td align="center">
+		<tr align="center">
+            <td><?php echo $row['cedula'] ?></td>
+            <td><?php echo $row['nombre'] ?></td>
+			<td><?php echo $row['tasa'] ?></td>
+			<td>$<?php echo $row['extracupo'] ?></td>
+			<td>$<?php echo $row['cupodispo'] ?></td>
+			<td><?php echo $row['potencialtdc'] ?></td>
+			<td><?php echo $row['tel1'] ?></td>
+			<td><?php echo $row['tel2'] ?></td>
+			<td><?php echo $row['tel3'] ?></td>
+			<td><?php echo $row['tel4'] ?></td>
+			<td><?php echo $row['tel5'] ?></td>
+			<td><?php echo $row['tel6'] ?></td>
+			<td><?php echo $row['tel7'] ?></td>
+			<td><?php echo $row['tel8'] ?></td>
+			<td><?php echo $row['tel9'] ?></td>
+			<td><?php echo $row['tel10'] ?></td>
+			<td><?php echo $row['tel11'] ?></td>
+			<td><?php echo $row['tel12'] ?></td>
+			<td><?php echo $row['tel13'] ?></td>
+			<td><?php echo $row['tel14'] ?></td>
+			<td><?php echo $row['tel15'] ?></td>
+			<td><?php echo $row['tel16'] ?></td>
+			<td><?php echo $row['tel17'] ?></td>
+			<td><?php echo $row['tel18'] ?></td>
+			<td><?php echo $row['tel19'] ?></td>
+			<td><?php echo $row['tel20'] ?></td>
+			<td><?php echo $row['tel21'] ?></td>
+			<td><?php echo $row['tel22'] ?></td>
+			<td width="400"><?php echo $row['motivo1'] ?></td>
+			<td width="400"><?php echo $row['motivo2'] ?></td>
+			<td width="400"><?php echo $row['motivo3'] ?></td>
+			<td><?php echo $row['tipificacion'] ?></td>
+			<td><?php echo $row['detalletipi'] ?></td>
+			<td><?php echo $row['Usuario'] ?></td>
+			<td>
 			<form action="/Sepfin/compradecartera/editprousuario.php" method="POST" onsubmit="return confirm('ADVERTENCIA!!  Va a editar un producto, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.');">
 			<input type="hidden" name="idproducto" method="post" value="<?php echo $row['idproducto']?>">
 			<button type="submit">EDITAR</button>

@@ -10,7 +10,7 @@ include("seguridad.php");
    </head>
    <body>
    <br>
-            <a href="../main.php">Regresar al inicio</a><br><br>    
+            <a href="../usuarios.php/">Regresar al inicio</a><br><br>    
    <header>
        <img src="../img/Marca_AXTRAC.png" width="184" height="85" alt=""/>      
        <p>REGISTRO DE NUEVOS USUARIOS</p>

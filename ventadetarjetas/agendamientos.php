@@ -37,6 +37,27 @@ $Disponible="";
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+<!--
+.inputcentrado {
+	text-align: center;
+	background-color:LAVENDER;
+   }
+   
+table tr:nth-child(even) {
+	background-color: #eee;
+}
+ 
+table tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+table {
+	width: 3000;
+	font-size: 12px;
+}
+-->
+</style>`
 <title>GESTION DE AGENDAMIENTOS SEPFIN</title>
 <link href="css2/estilo.css" rel="stylesheet">
 <script src="js2/jquery.js"></script>
@@ -53,22 +74,9 @@ $Disponible="";
 <button type="submit">Filtrar</button>
 </form>
 </div>		
-        
-		<table align="center" cellspacing="5" cellpadding="5" border="3" border="1" bgcolor=dddddd>
-          <tr>
-           <td colspan="4" align="center" bgcolor="blue">
-			<font color="#FFFFFF">
-			 <strong>
-			  Estos son los Clientes Agendados
-			 </strong>
-			</font>
-		   </td>
-          </tr>
-        </table>
-		<br>
-		
-<table align="center" cellspacing="5" cellpadding="5" border="3" border="1" bgcolor=dddddd>   
-            <th>CEDULA</th>
+<table align="center" cellspacing="5" cellpadding="5" border="3" border="1">   
+            <tr align="center">
+			<th>CEDULA</th>
             <th>CODIGO</th>
 			<th>CODIGO SOBRE</th>
 			<th>NOMBRE</th>
@@ -93,6 +101,7 @@ $Disponible="";
 			<th>ASESOR</th>
 			<th>BASE</th>
 			<th>Editar</th>
+			</tr>
                  <?php
 		$result = $con->query($sql);//Con esta consultado traigo todos los campos de la tabla productos escogida o asignada
 		if(!$result )
@@ -102,32 +111,32 @@ $Disponible="";
 		while ($row = $result->fetch_assoc())
 		{			
          ?>
-		<tr>
-            <td align="cente" ><?php echo $row['cedula'] ?></td>
-            <td align="center"><?php echo $row['codigo'] ?></td>
-			<td align="center"><?php echo $row['codigosobre'] ?></td>
-			<td align="center"><?php echo $row['nombre'] ?></td>
-			<td align="center"><?php echo $row['estado'] ?></td>
-			<td align="center"><?php echo $row['direccion'] ?></td>
-			<td align="center"><?php echo $row['barrio'] ?></td>
-			<td align="center"><?php echo $row['localidad'] ?></td>
-			<td align="center"><?php echo $row['observaciones'] ?></td>
-			<td align="center"><?php echo $row['tel1'] ?></td>
-			<td align="center"><?php echo $row['tel2'] ?></td>
-			<td align="center"><?php echo $row['tel3'] ?></td>
-			<td align="center"><?php echo $row['motivo1'] ?></td>
-			<td align="center"><?php echo $row['motivo2'] ?></td>
-			<td align="center"><?php echo $row['motivo3'] ?></td>
-			<td align="center"><?php echo $row['motivo4'] ?></td>
-			<td align="center"><?php echo $row['motivo5'] ?></td>
-			<td align="center"><?php echo $row['Usuario'] ?></td>
-			<td align="center"><?php echo $row['tipitificacion'] ?></td>
-			<td align="center"><?php echo $row['detalletipi'] ?></td>
-			<td align="center"><?php echo $row['fecha'] ?></td>
-			<td align="center"><?php echo $row['hora'] ?></td>
-			<td align="center"><?php echo $row['asesor'] ?></td>
-			<td align="center"><?php echo $row['base'] ?></td>
-			<td align="center">
+		<tr align="center">
+            <td><?php echo $row['cedula'] ?></td>
+            <td><?php echo $row['codigo'] ?></td>
+			<td><?php echo $row['codigosobre'] ?></td>
+			<td><?php echo $row['nombre'] ?></td>
+			<td><?php echo $row['estado'] ?></td>
+			<td><?php echo $row['direccion'] ?></td>
+			<td><?php echo $row['barrio'] ?></td>
+			<td><?php echo $row['localidad'] ?></td>
+			<td><?php echo $row['observaciones'] ?></td>
+			<td><?php echo $row['tel1'] ?></td>
+			<td><?php echo $row['tel2'] ?></td>
+			<td><?php echo $row['tel3'] ?></td>
+			<td><?php echo $row['motivo1'] ?></td>
+			<td><?php echo $row['motivo2'] ?></td>
+			<td><?php echo $row['motivo3'] ?></td>
+			<td><?php echo $row['motivo4'] ?></td>
+			<td><?php echo $row['motivo5'] ?></td>
+			<td><?php echo $row['Usuario'] ?></td>
+			<td><?php echo $row['tipitificacion'] ?></td>
+			<td><?php echo $row['detalletipi'] ?></td>
+			<td><?php echo $row['fecha'] ?></td>
+			<td><?php echo $row['hora'] ?></td>
+			<td><?php echo $row['asesor'] ?></td>
+			<td><?php echo $row['base'] ?></td>
+			<td>
 			<form action="/Sepfin/ventadetarjetas/editagendamiento.php" method="POST" onsubmit="return confirm('ADVERTENCIA!!  Va a modificar un agendamiento, esto altera la informacion de un agendamiento ya programado, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.');">
 			<input type="hidden" name="idagendamiento" method="post" value="<?php echo $row['idagendamiento']?>">
 			<button type="submit">EDITAR</button>

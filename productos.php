@@ -35,6 +35,29 @@ if($busqueda==""){
 <html lang="es"> 
 <head>
 	<meta charset="utf-8">
+<style>	
+<!--
+table tr:nth-child(even) {
+	background-color: #eee;
+}
+ 
+table tr:nth-child(odd) {
+	background-color: #fff;
+}
+table {
+	font-size: 12px;
+}
+body{
+	margin:0px;
+	background: #FFF;
+	font-family:Arial;
+	min-width:1000px;
+}
+h3{
+	font-family:"Times New Roman", Georgia, Serif;
+}
+-->
+</style>	
 	<title>Productos</title>
 	
 <script language="JavaScript">
@@ -76,9 +99,9 @@ if (!empty($_GET[success])) { echo "<script> alert('Se cargaron los archivos exi
 <h1><b>Productos Sepfin</b></h1>
 </div>
 	<table align="center" cellspacing="5" cellpadding="5" border="3" border="1" bgcolor=dddddd>   
-            <th>Producto</th>
-            <th>Descripcion</th>
-            <th>Eliminar Registros</th>
+            <th>PRODUCTOS</th>
+            <th>DESCRIPCION</th>
+            <th>ELIMINAR REGISTROS</th>
          <?php
 		$result = $con->query($sql);
 		if(!$result )

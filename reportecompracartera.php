@@ -37,24 +37,19 @@ if($busqueda==""){
 	text-align: center;
 	background-color:LAVENDER;
    }
+   
 table tr:nth-child(even) {
-    background-color: #eee;
+	background-color: #eee;
 }
  
 table tr:nth-child(odd) {
-    background-color: #fff;
+	background-color: #fff;
 }
 
 table {
-	height:1;
-	font-size: 14px;
+	width: 5000;
+	font-size: 12px;
 }
-
-table td:nth-child(even) {
-	height:1;
-	font-size: 14px;
-}
-
 -->
 </style>
 <title>REPORTES DE COMPRA DE CARTERA</title>
@@ -162,9 +157,9 @@ return true;
 			<td><?php echo $row['tel20'] ?></td>
 			<td><?php echo $row['tel21'] ?></td>
 			<td><?php echo $row['tel22'] ?></td>
-			<td><?php echo $row['motivo1'] ?></td>
-			<td><?php echo $row['motivo2'] ?></td>
-			<td><?php echo $row['motivo3'] ?></td>
+			<td width="400"><?php echo $row['motivo1'] ?></td>
+			<td width="400"><?php echo $row['motivo2'] ?></td>
+			<td width="400"><?php echo $row['motivo3'] ?></td>
 			<td><?php echo $row['tipificacion'] ?></td>
 			<td><?php echo $row['detalletipi'] ?></td>
 			<td><?php echo $row['Usuario'] ?></td>

@@ -13,8 +13,30 @@ include ('conexion3.php');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+<!--
+table tr:nth-child(even) {
+	background-color: #eee;
+}
+ 
+table tr:nth-child(odd) {
+	background-color: #fff;
+}
+table {
+	font-size: 12px;
+}
+body{
+	margin:0px;
+	background: #FFF;
+	font-family:Arial;
+	min-width:1000px;
+}
+h3{
+	font-family:"Times New Roman", Georgia, Serif;
+}
+-->
+</style>
 <title>CRM SEPFIN</title>
-<link href="css2/estilo.css" rel="stylesheet">
 <script src="js2/jquery.js"></script>
 <script src="js2/myjava.js"></script>   
    
@@ -52,7 +74,7 @@ return true;
             </tr>
         </table> <br>
 		
-        <table align="center" cellspacing="5" cellpadding="5" border="3" border="1" bgcolor=dddddd>   
+        <table width="700" align="center" cellspacing="5" cellpadding="5" border="3" border="1">   
             <th>Nombre</th>
             <th>Usuario</th>
             <th>Contrasena</th>
