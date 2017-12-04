@@ -31,6 +31,32 @@ if($busqueda==""){
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+<!--
+.inputcentrado {
+	text-align: center;
+	background-color:LAVENDER;
+   }
+table tr:nth-child(even) {
+    background-color: #eee;
+}
+ 
+table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+table {
+	height:1;
+	font-size: 14px;
+}
+
+table td:nth-child(even) {
+	height:1;
+	font-size: 14px;
+}
+
+-->
+</style>
 <title>REPORTES VENTAS DE TARJETAS DE CREDITO</title>
 <script language="JavaScript">
 function aviso(url){
@@ -55,21 +81,10 @@ return true;
 <button type="submit">Filtrar</button>
 </form>
 </div>			
-   <?php
-   //<p>&nbsp;</p>
-   ?>
-        <table align="center" cellspacing="5" cellpadding="5" border="3" border="1" bgcolor=dddddd>
-            <tr>
-            <td colspan="4" align="center" bgcolor="blue"><font color="#FFFFFF"><strong>
-			<?php
-			echo "Ventas de Tarjetas de Credito";
-			?>
-			</strong></font></td>
-            </tr>
-        </table> <br>
 		
- <table align="center" cellspacing="5" cellpadding="5" border="3" border="1" bgcolor=dddddd>   
-            <th>CEDULA</th>
+ <table align="center" cellspacing="5" cellpadding="5" border="3" border="1">   
+            <tr align="center">
+			<th>CEDULA</th>
             <th>NOMBRE</th>
 			<th>ESTADO</th>
 			<th>TELEFONO 1</th>
@@ -89,6 +104,7 @@ return true;
 			<th>DETALLE TIPIFICACION</th>
 			<th>VENDEDOR</th>
 			<th>Editar</th>
+			</tr>
                  <?php
 		$result = $con->query($sql);
 		if(!$result )
@@ -98,27 +114,27 @@ return true;
 		while ($row = $result->fetch_assoc())
 		{			
          ?>
-		<tr>
-            <td align="cente" ><?php echo $row['cedula'] ?></td>
-            <td align="center"><?php echo $row['nombre'] ?></td>
-			<td align="center"><?php echo $row['estado'] ?></td>
-			<td align="center"><?php echo $row['tel1'] ?></td>
-			<td align="center"><?php echo $row['tel2'] ?></td>
-			<td align="center"><?php echo $row['tel3'] ?></td>
-			<td align="center"><?php echo $row['tel4'] ?></td>
-			<td align="center"><?php echo $row['tel5'] ?></td>
-			<td align="center"><?php echo $row['tel6'] ?></td>
-			<td align="center"><?php echo $row['tel7'] ?></td>
-			<td align="center"><?php echo $row['direccion'] ?></td>
-			<td align="center"><?php echo $row['barrio'] ?></td>
-			<td align="center"><?php echo $row['localidad'] ?></td>
-			<td align="center"><?php echo $row['motivo1'] ?></td>
-			<td align="center"><?php echo $row['motivo2'] ?></td>
-			<td align="center"><?php echo $row['motivo3'] ?></td>
-			<td align="center"><?php echo $row['tipificacion'] ?></td>
-			<td align="center"><?php echo $row['detalletipi'] ?></td>
-			<td align="center"><?php echo $row['Usuario'] ?></td>
-			<td align="center">
+			<tr align="center">
+            <td><?php echo $row['cedula'] ?></td>
+            <td><?php echo $row['nombre'] ?></td>
+			<td><?php echo $row['estado'] ?></td>
+			<td><?php echo $row['tel1'] ?></td>
+			<td><?php echo $row['tel2'] ?></td>
+			<td><?php echo $row['tel3'] ?></td>
+			<td><?php echo $row['tel4'] ?></td>
+			<td><?php echo $row['tel5'] ?></td>
+			<td><?php echo $row['tel6'] ?></td>
+			<td><?php echo $row['tel7'] ?></td>
+			<td><?php echo $row['direccion'] ?></td>
+			<td><?php echo $row['barrio'] ?></td>
+			<td><?php echo $row['localidad'] ?></td>
+			<td><?php echo $row['motivo1'] ?></td>
+			<td><?php echo $row['motivo2'] ?></td>
+			<td><?php echo $row['motivo3'] ?></td>
+			<td><?php echo $row['tipificacion'] ?></td>
+			<td><?php echo $row['detalletipi'] ?></td>
+			<td><?php echo $row['Usuario'] ?></td>
+			<td>
 			<form action="editventadmin.php" method="POST" onsubmit="return confirm('ADVERTENCIA!!  Va a editar un producto, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.');">
 			<input type="hidden" name="idproducto" method="post" value="<?php echo $row['idproducto']?>">
 			<button type="submit">EDITAR</button>
@@ -126,7 +142,7 @@ return true;
 			</td>
 		</tr>
             <?php } ?>
-        </table>
+</table>
     </body>
 </html>
 <?php include("templates/footer.php"); ?>

@@ -47,18 +47,15 @@ $perfil="Agente";
             <option>Agente</option>
         </select><br>
 	Producto: <select name="Producto" id="Producto"> 
-        <option><?php echo $fila['producto'] ?></option>
-		<option>Asigne un producto:</option>
-        <?php	
+		<option><?php echo $fila['producto'] ?></option>
+         <?php	
           $query = $con -> query ("SELECT * FROM productos");								
-          while ($valores = mysqli_fetch_array($query)) {
+          while ($valores = mysqli_fetch_assoc($query)) {
             echo '<option value="'.$valores['idproducto'].'">'.$valores['Producto'].'</option>';
           }
-        ?> 
+         ?> 
 		</select> <br><br>
-	<input type="submit" value="Enviar" align="right">
-    
-    <input type="submit" value="Actualizar" align="right">
+	<center><input type="submit" value="Actualizar" align="right"></center>
     </form>
    </section></td>
   </tr>

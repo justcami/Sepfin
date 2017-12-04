@@ -3,9 +3,12 @@
 
 body{
 	margin:0px;
-	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	background: #FFF;
+	color: #FFF;
+	font-family:Arial;
 	min-width:1000px;
 }
+
 header{
 	margin:auto;
 	padding:5px;

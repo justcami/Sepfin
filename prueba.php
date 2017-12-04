@@ -5,7 +5,7 @@ error_reporting (0);
 
 $base= $_POST['Producto'];
 $q = $con -> query ("SELECT Producto FROM productos WHERE idproducto = '$base'");  
-$ret = mysqli_fetch_array($q);
+$ret = mysqli_fetch_row($q);
 $final= $ret[0];
 
 $phrase = $final;

@@ -63,7 +63,7 @@ if (!empty($_GET[success])) { echo "<script> alert('Se cargaron los archivos exi
         <option value="0">Eliga su producto:</option>
         <?php	
           $query = $con -> query ("SELECT * FROM productos");								
-          while ($valores = mysqli_fetch_array($query)) {
+          while ($valores = mysqli_fetch_assoc($query)) {
             echo '<option value="'.$valores['idproducto'].'">'.$valores['Producto'].'</option>';
           }
         ?>  

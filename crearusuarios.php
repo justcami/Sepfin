@@ -30,7 +30,7 @@ include("seguridad.php");
         <option value="0">Asigne un producto:</option>
         <?php	
           $query = $con -> query ("SELECT * FROM productos");								
-          while ($valores = mysqli_fetch_array($query)) {
+          while ($valores = mysqli_fetch_assoc($query)) {
             echo '<option value="'.$valores['idproducto'].'">'.$valores['Producto'].'</option>';
           }
         ?> 
