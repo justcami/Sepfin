@@ -202,7 +202,6 @@ table {
 			<td>
 			<form action="/Sepfin/compradecartera/editprousuario.php" method="POST" onsubmit="return confirm('ADVERTENCIA!!  Va a editar un producto, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.');">
 			<input type="hidden" name="idproducto" method="post" value="<?php echo $row['idproducto']?>">
-			<button type="submit">EDITAR</button>
 			</form>	
 			</td>
 		</tr>
