@@ -3,18 +3,10 @@ include("../seguridad2.php");
 include ('../conexion3.php');
 include ('../conexion.php');
 error_reporting (0);
-
-$where="WHERE EstadoRegistro='$Disponible'";
+?>
+<?php 
 $busqueda = $_POST['filtro'];
 
-if(isset($_POST['buscar']))
-{
-	$where = "WHERE EstadoRegistro='$Disponible' AND (cedula LIKE '%".$busqueda."%' OR nombre LIKE '%".$busqueda."%' OR tasa LIKE '%".$busqueda."%' OR extracupo LIKE '%".$busqueda."%' OR cupodispo LIKE '%".$busqueda."%' OR potencialtdc LIKE '%".$busqueda."%' OR tel1 LIKE '%".$busqueda."%' OR tel2 LIKE '%".$busqueda."%' OR tel3 LIKE '%".$busqueda."%' OR tel4 LIKE '%".$busqueda."%' OR tel5 LIKE '%".$busqueda."%' OR tel6 LIKE '%".$busqueda."%' OR tel7 LIKE '%".$busqueda."%' OR tel8 LIKE '%".$busqueda."%' OR tel9 LIKE '%".$busqueda."%' OR tel10 LIKE '%".$busqueda."%' OR tel11 LIKE '%".$busqueda."%' OR tel12 LIKE '%".$busqueda."%' OR tel13 LIKE '%".$busqueda."%' OR tel14 LIKE '%".$busqueda."%' OR tel15 LIKE '%".$busqueda."%' OR tel16 LIKE '%".$busqueda."%' OR tel17 LIKE '%".$busqueda."%' OR tel18 LIKE '%".$busqueda."%' OR tel19 LIKE '%".$busqueda."%' OR tel20 LIKE '%".$busqueda."%' OR tel21 LIKE '%".$busqueda."%' OR tel22 LIKE '%".$busqueda."%' OR tipificacion LIKE '%".$busqueda."%' OR detalletipi LIKE '%".$busqueda."%' OR Usuario LIKE '%".$busqueda."%')";
-}	
-$sql = "select * from compradecartera $where";
-$result = $con -> query($sql);	//Con esta consultado traigo todos los campos de la tabla productos escogida o asignada
-
-/*
 $busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'");
 			$row_cnt = $busprod->num_rows;
 			if ($row_cnt > 0) 
@@ -56,13 +48,12 @@ $Disponible="";
 				$newphrase = str_replace($espacio, $sin, $phrase);
 				$sql = "select * from $newphrase WHERE EstadoRegistro='$Disponible'";
 			}}}}
-
-
-*/ 
-echo "<b>Bienvenido: </b>";
-echo $nuusuario."<br>";
-?>	
-<a href="../logout.php">Cerrar Sesion</a><br>			
+?>
+		<?php 
+            echo "<b>Bienvenido: </b>";
+            echo $nuusuario."<br>";
+            ?>	
+            <a href="../logout.php">Cerrar Sesion</a><br>			
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -101,7 +92,7 @@ table {
 <div id="filtros" align="center">
 <form action="gestion.php" method="POST">
 <b>Que quiere buscar </b><input type="text" name="filtro" placeholder="Filtro" method="post">            
-<button name="buscar" type="submit">Filtrar</button>
+<button type="submit">Filtrar</button>
 </form>
 </div>			
    <?php
@@ -165,7 +156,7 @@ table {
 			<th>Editar</th>
 			</tr>
                  <?php
-		#$result = $con->query($sql);//Con esta consultado traigo todos los campos de la tabla productos escogida o asignada
+		$result = $con->query($sql);//Con esta consultado traigo todos los campos de la tabla productos escogida o asignada
 		if(!$result )
 		{
 		 	die('Ocurrio un error al obtener los valores de la base de datos: ' . mysql_error());
@@ -211,7 +202,6 @@ table {
 			<td>
 			<form action="/Sepfin/compradecartera/editprousuario.php" method="POST" onsubmit="return confirm('ADVERTENCIA!!  Va a editar un producto, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.');">
 			<input type="hidden" name="idproducto" method="post" value="<?php echo $row['idproducto']?>">
-			<button type="submit">EDITAR</button>
 			</form>	
 			</td>
 		</tr>

@@ -3,19 +3,10 @@ include("../seguridad4.php");
 include ('../conexion3.php');
 include ('../conexion.php');
 error_reporting (0);
-
+?>
+<?php 
 $busqueda = $_POST['filtro'];
-$where="WHERE EstadoRegistro='$Disponible'";
-	
-if(isset($_POST['buscar']))
-{
-	$where = "WHERE EstadoRegistro='$Disponible' AND (cedula LIKE '%".$busqueda."%' OR codigo LIKE '%".$busqueda."%' OR codigosobre LIKE '%".$busqueda."%' OR nombre LIKE '%".$busqueda."%' OR estado LIKE '%".$busqueda."%' OR direccion LIKE '%".$busqueda."%' OR barrio LIKE '%".$busqueda."%' OR localidad LIKE '%".$busqueda."%' OR observaciones LIKE '%".$busqueda."%' OR tel1 LIKE '%".$busqueda."%' OR tel2 LIKE '%".$busqueda."%' OR tel3 LIKE '%".$busqueda."%' OR tipitificacion LIKE '%".$busqueda."%' OR detalletipi LIKE '%".$busqueda."%' OR Usuario LIKE '%".$busqueda."%' OR base LIKE '%".$busqueda."%' OR hora LIKE '%".$busqueda."%')";
-}	
-$sql = "select * from agendamientos $where";
-$result = $con -> query($sql);
 
-
-/*
 if($busqueda==""){
 
 $Disponible="";	
@@ -35,12 +26,13 @@ $Disponible="";
 	}else{
 				$sql = "select * from agendamientos WHERE EstadoRegistro='$Disponible'";
 			}}
-*/
-echo "<b>Bienvenido: </b>";
-echo $nuusuario."<br>";
-?>	
-<a href="../logout.php">Cerrar Sesion</a><br>
-<a href="gestion.php">Regresar</a><br>		
+?>
+		<?php 
+            echo "<b>Bienvenido: </b>";
+            echo $nuusuario."<br>";
+            ?>	
+            <a href="../logout.php">Cerrar Sesion</a><br>
+			<a href="gestion.php">Regresar</a><br>		
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -79,7 +71,7 @@ table {
 <div id="filtros" align="center">
 <form action="agendamientos.php" method="POST">
 <b>Que quiere buscar </b><input type="text" name="filtro" placeholder="Filtro" method="post">            
-<button name="buscar" type="submit">Filtrar</button>
+<button type="submit">Filtrar</button>
 </form>
 </div>		
 <table align="center" cellspacing="5" cellpadding="5" border="3" border="1">   

@@ -41,7 +41,7 @@ $result = $con -> query($sql);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
 <style>
 <!--
 .inputcentrado {
@@ -57,9 +57,13 @@ table tr:nth-child(odd) {
 	background-color: #fff;
 }
 
-table {
-	width: 5000;
+.table1 {
+	width:5000;
 	font-size: 12px;
+}
+
+.table2 {
+	width:auto;
 }
 -->
 </style>
@@ -83,22 +87,25 @@ return true;
 </center>
 <div id="filtros" align="center">
 
+<table class="table2">
+<tr>
+<!-- CON ESTE FORM ENVIO LA PALABRA A BUSCAR PARA FILTRARLA Y MOSTRARLA EN PANTALLA-->
+<form action="reportecompracartera.php" method="POST">
+<td><input type="text" name="filtro" placeholder="Que quiere buscar" method="post"></td>
+<td><button name="buscar" type="submit">Filtrar</button></td>
+</form>
 <!-- CON ESTE FORM ENVIO LA PALABRA A BUSCAR PARA HACER LA CONSULTA Y DESCARGAR LA INFO FILTRADA-->
 <form action="descargacompracartera.php" method="POST">
 <input type="hidden" name="busqueda2" method="post" value="<?php echo $busqueda;?>">
-<button name="buscar" type="submit">DESCARGAR</button>
+<td><button name="buscar" type="submit">DESCARGAR</button></td>
 </form>
-
-<form action="reportecompracartera.php" method="POST">
-<b>Que quiere buscar </b><input type="text" name="filtro" placeholder="Filtro" method="post">            
-<button name="buscar" type="submit">Filtrar</button>
-</form>
-
+</tr>
+</table><br>
 </div>			
    <?php
    //<p>&nbsp;</p>
    ?>		
-<table align="center" cellspacing="3" cellpadding="3" border="3" border="1">   
+<table class="table1" align="center" cellspacing="3" cellpadding="3" border="3" border="1">   
             <tr align="center">
 			<th>CEDULA</th>
             <th>NOMBRE</th>
