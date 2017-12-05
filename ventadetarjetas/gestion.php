@@ -3,11 +3,19 @@ include("../seguridad4.php");
 include ('../conexion3.php');
 include ('../conexion.php');
 error_reporting (0);
-?>
-<?php 
-$busqueda = $_POST['filtro'];
 
 //Con estas lineas traigo el nombre de la tabla que necesito y tiene asociada el usuario para filtrar.
+$where="WHERE EstadoRegistro='$Disponible'";
+$busqueda = $_POST['filtro'];
+
+if(isset($_POST['buscar']))
+{
+	$where = "WHERE EstadoRegistro='$Disponible' AND (cedula LIKE '%".$busqueda."%' OR nombre LIKE '%".$busqueda."%' OR estado LIKE '%".$busqueda."%' OR tel1 LIKE '%".$busqueda."%' OR tel2 LIKE '%".$busqueda."%' OR tel3 LIKE '%".$busqueda."%' OR tel4 LIKE '%".$busqueda."%' OR tel5 LIKE '%".$busqueda."%' OR tel6 LIKE '%".$busqueda."%' OR tel7 LIKE '%".$busqueda."%' OR direccion LIKE '%".$busqueda."%' OR barrio LIKE '%".$busqueda."%' OR localidad LIKE '%".$busqueda."%' OR tipificacion LIKE '%".$busqueda."%' OR detalletipi LIKE '%".$busqueda."%' OR Usuario LIKE '%".$busqueda."%' OR base LIKE '%".$busqueda."%')";
+}	
+$sql = "select * from ventadetarjetas $where";
+$result = $con -> query($sql);
+
+/*
 $busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'");
 			$row_cnt = $busprod->num_rows;
 			if ($row_cnt > 0) 
@@ -40,6 +48,7 @@ $Disponible="";
 				$sin   = array("");
 				$newphrase = str_replace($espacio, $sin, $phrase);
 				$sql = "select * from $newphrase WHERE EstadoRegistro='$Disponible' AND (cedula LIKE '%".$busqueda."%' OR nombre LIKE '%".$busqueda."%' OR estado LIKE '%".$busqueda."%' OR tel1 LIKE '%".$busqueda."%' OR tel2 LIKE '%".$busqueda."%' OR tel3 LIKE '%".$busqueda."%' OR tel4 LIKE '%".$busqueda."%' OR tel5 LIKE '%".$busqueda."%' OR tel6 LIKE '%".$busqueda."%' OR tel7 LIKE '%".$busqueda."%' OR direccion LIKE '%".$busqueda."%' OR barrio LIKE '%".$busqueda."%' OR localidad LIKE '%".$busqueda."%' OR tipificacion LIKE '%".$busqueda."%' OR detalletipi LIKE '%".$busqueda."%' OR Usuario LIKE '%".$busqueda."%' OR base LIKE '%".$busqueda."%')";
+				
 				break;					
 				}
 	}else{
@@ -49,12 +58,11 @@ $Disponible="";
 				$newphrase = str_replace($espacio, $sin, $phrase);
 				$sql = "select * from $newphrase WHERE EstadoRegistro='$Disponible'";
 			}}}}
-?>
-		<?php 
-            echo "<b>Bienvenido: </b>";
-            echo $nuusuario."<br>";
-            ?>	
-            <a href="../logout.php">Cerrar Sesion</a><br><br>			
+*/
+echo "<b>Bienvenido: </b>";
+echo $nuusuario."<br>";
+?>	
+<a href="../logout.php">Cerrar Sesion</a><br><br>			
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -96,7 +104,7 @@ table {
 <div id="filtros" align="center">
 <form action="gestion.php" method="POST">
 <b>Que quiere buscar </b><input type="text" name="filtro" placeholder="Filtro" method="post">            
-<button type="submit">Filtrar</button>
+<button name="buscar" type="submit">Filtrar</button>
 </form>
 </div>			
    <?php
@@ -144,7 +152,7 @@ table {
 			<th>VENDEDOR</th>
 			<th>Editar</th>
                  <?php
-		$result = $con->query($sql);//Con esta consultado traigo todos los campos de la tabla productos escogida o asignada
+		#$result = $con->query($sql);//Con esta consultado traigo todos los campos de la tabla productos escogida o asignada
 		if(!$result )
 		{
 		 	die('Ocurrio un error al obtener los valores de la base de datos: ' . mysql_error());
