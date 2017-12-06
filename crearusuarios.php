@@ -1,16 +1,29 @@
 <?php
 include("seguridad.php");
 ?>
-<!DOCTYPE html>
-<html lang="es-ES">
+<a href="../usuarios.php/">Regresar</a><br><br>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+<style>	
+<!--
+body{
+	margin:2px;
+	background: #FFF;
+	font-family:"Times New Roman", Georgia, Serif;
+	min-width:1000px;
+}
+a{
+	font-family:"Times New Roman", Georgia, Serif;
+}
+-->
+</style>
 <title>Registro Usuario Plataforma Sepfin</title>
 <link href="../css2/estilo.css" rel="stylesheet">
    </head>
    <body>
-   <br>
-            <a href="../usuarios.php/">Regresar al inicio</a><br><br>    
+   <br>    
    <header>
        <img src="../img/Marca_AXTRAC.png" width="184" height="85" alt=""/>      
        <p>REGISTRO DE NUEVOS USUARIOS</p>

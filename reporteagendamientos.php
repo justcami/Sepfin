@@ -4,24 +4,15 @@ include ('conexion.php');
 error_reporting (0);
 ?>
 <?php 
+$Producto = $_REQUEST['Producto'];
+$where="";
 $busqueda=$_POST['filtro'];
-if($busqueda==""){
-	
-		switch($_POST['filtro']){
-			case $busqueda:
-				$sql = "select * from agendamientos";
-				break;					
-}
- }else{			
-	if(isset($_POST['filtro'])){
-		switch($_POST['filtro']){
-			case $busqueda:
-				$sql = "select * from agendamientos WHERE cedula LIKE '%".$busqueda."%' OR codigo LIKE '%".$busqueda."%' OR codigosobre LIKE '%".$busqueda."%' OR nombre LIKE '%".$busqueda."%' OR estado LIKE '%".$busqueda."%' OR direccion LIKE '%".$busqueda."%' OR barrio LIKE '%".$busqueda."%' OR localidad LIKE '%".$busqueda."%' OR observaciones LIKE '%".$busqueda."%' OR tel1 LIKE '%".$busqueda."%' OR tel2 LIKE '%".$busqueda."%' OR tel3 LIKE '%".$busqueda."%' OR tipitificacion LIKE '%".$busqueda."%' OR detalletipi LIKE '%".$busqueda."%' OR Usuario LIKE '%".$busqueda."%' OR base LIKE '%".$busqueda."%' OR hora LIKE '%".$busqueda."%' OR fecha LIKE '%".$busqueda."%' OR asesor LIKE '%".$busqueda."%'";
-				break;					
-				}
-	}else{
-		$sql = "select * from agendamientos;";
-			}}
+if(isset($_POST['buscar']))
+{
+	$where = "WHERE cedula LIKE '%".$busqueda."%' OR codigo LIKE '%".$busqueda."%' OR codigosobre LIKE '%".$busqueda."%' OR nombre LIKE '%".$busqueda."%' OR estado LIKE '%".$busqueda."%' OR direccion LIKE '%".$busqueda."%' OR barrio LIKE '%".$busqueda."%' OR localidad LIKE '%".$busqueda."%' OR observaciones LIKE '%".$busqueda."%' OR tel1 LIKE '%".$busqueda."%' OR tel2 LIKE '%".$busqueda."%' OR tel3 LIKE '%".$busqueda."%' OR tipitificacion LIKE '%".$busqueda."%' OR detalletipi LIKE '%".$busqueda."%' OR Usuario LIKE '%".$busqueda."%' OR base LIKE '%".$busqueda."%' OR hora LIKE '%".$busqueda."%' OR fecha LIKE '%".$busqueda."%' OR asesor LIKE '%".$busqueda."%'";
+}	
+$sql = "select * from agendamientos $where";
+$result = $con -> query($sql);	
 ?>
 			
             <a href="logout.php">Cerrar Sesion</a><br>
@@ -29,7 +20,7 @@ if($busqueda==""){
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
 
 <style>
 <!--
@@ -45,10 +36,12 @@ table tr:nth-child(even) {
 table tr:nth-child(odd) {
 	background-color: #fff;
 }
-
-table {
-	width: 3000;
+.table1 {
+	width:3000;
 	font-size: 12px;
+}
+.table2 {
+	width:auto;
 }
 -->
 </style>
@@ -72,13 +65,23 @@ return true;
             <h3 style="color:blue;">REPORTES DE AGENDAMIENTOS</h3>
 </center>
 <div id="filtros" align="center">
+<table class="table2">
+<tr>
+<!-- CON ESTE FORM ENVIO LA PALABRA A BUSCAR PARA FILTRARLA Y MOSTRARLA EN PANTALLA-->
 <form action="reporteagendamientos.php" method="POST">
-<b>Que quiere buscar </b><input type="text" name="filtro" placeholder="Filtro" method="post">            
-<button type="submit">Filtrar</button>
+<td><input type="text" name="filtro" placeholder="Que quiere buscar" method="post"></td>
+<td><button name="buscar" type="submit">Filtrar</button></td>
 </form>
+<!-- CON ESTE FORM ENVIO LA PALABRA A BUSCAR PARA HACER LA CONSULTA Y DESCARGAR LA INFO FILTRADA-->
+<form action="descargaagendamientos.php" method="POST">
+<input type="hidden" name="busqueda2" method="post" value="<?php echo $busqueda;?>">
+<td><button name="buscar" type="submit">DESCARGAR</button></td>
+</form>
+</tr>
+</table><br>
 </div>			
 			
- <table align="center" cellspacing="3" cellpadding="3" border="3" border="1">   
+ <table class="table1" align="center" cellspacing="3" cellpadding="3" border="3" border="1">   
             <tr align="center">
 			<td><b>Cedula</b></td>
             <td><b>Codigo</b></td>

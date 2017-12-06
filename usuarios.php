@@ -12,8 +12,8 @@ include ('conexion3.php');
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<style>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+<style>	
 <!--
 table tr:nth-child(even) {
 	background-color: #eee;
@@ -23,12 +23,14 @@ table tr:nth-child(odd) {
 	background-color: #fff;
 }
 table {
-	font-size: 12px;
+	width: auto;
+	text-align: center;
+	font-size: 14px;
 }
 body{
-	margin:0px;
+	margin:2px;
 	background: #FFF;
-	font-family:Arial;
+	font-family:"Times New Roman", Georgia, Serif;
 	min-width:1000px;
 }
 h3{

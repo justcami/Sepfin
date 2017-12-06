@@ -3,38 +3,13 @@ include("seguridad.php");
 include("conexion.php");
 error_reporting (0);
 ?>
-<?php 
-            echo "<b>Bienvenido: </b>";
-            echo $nuusuario."<br>";
-            ?>
-			
-<?php 
-$busqueda = $_POST['filtro'];
-if($busqueda==""){
-		switch($_POST['filtro']){
-			case $busqueda:
-				$sql = "select * from productos";
-				break;					
-		}	
-}else{
-	if(isset($_POST['filtro'])){
-		switch($_POST['filtro']){
-			case $busqueda:
-				$sql = "select * from productos WHERE Producto='$busqueda' OR Descripcion='$busqueda';";
-				break;					
-		}
-	}else{
-		$sql = "select * from productos;";
-	}
-}
-?>
-
-            <a href="logout.php">Cerrar Sesion</a><br>
+			<a href="logout.php">Cerrar Sesion</a><br>
 			<a href="main.php">Regresar al inicio</a><br><br>
-<!DOCTYPE html>
-<html lang="es"> 
+			
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
 <style>	
 <!--
 table tr:nth-child(even) {
@@ -45,13 +20,9 @@ table tr:nth-child(odd) {
 	background-color: #fff;
 }
 table {
-	font-size: 12px;
-}
-body{
-	margin:0px;
-	background: #FFF;
-	font-family:Arial;
-	min-width:1000px;
+	width: auto;
+	text-align: center;
+	font-size: 15px;
 }
 h3{
 	font-family:"Times New Roman", Georgia, Serif;
@@ -103,6 +74,7 @@ if (!empty($_GET[success])) { echo "<script> alert('Se cargaron los archivos exi
             <th>DESCRIPCION</th>
             <th>ELIMINAR REGISTROS</th>
          <?php
+		$sql = "select * from productos;";
 		$result = $con->query($sql);
 		if(!$result )
 		{

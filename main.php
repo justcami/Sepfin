@@ -26,7 +26,6 @@ table tr:nth-child(even) {
 table tr:nth-child(odd) {
 	background-color: #fff;
 }
-
 table {
 	width: auto;
 	text-align: center;
@@ -34,8 +33,7 @@ table {
 }
 -->
 </style>
-
-<title>CRM SEPFIN IDENTIFIQUESE</title>
+<title>CRM SEPFIN</title>
 </head>
   
   <body>
