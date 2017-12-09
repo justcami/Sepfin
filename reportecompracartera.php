@@ -29,7 +29,8 @@ $result = $con -> query($sql);
 table tr:nth-child(even) {
 	background-color: #eee;
 }
- 
+ 41
+ 3
 table tr:nth-child(odd) {
 	background-color: #fff;
 }
@@ -113,7 +114,7 @@ return true;
 			<th>TIPIFICACION</th>
 			<th>DETALLE TIPIFICACION</th>
 			<th>VENDEDOR</th>
-			<th>Editar</th>
+			<th>GESTIONAR</th>
 			</tr>
                  <?php
 		
@@ -162,7 +163,7 @@ return true;
 			<td>
 			<form action="editcompradmin.php" method="POST" onsubmit="return confirm('ADVERTENCIA!!  Va a editar un producto, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.');">
 			<input type="hidden" name="idproducto" method="post" value="<?php echo $row['idproducto']?>">
-			<button type="submit">EDITAR</button>
+			<button type="submit">GESTIONAR</button>
 			</form>	
 			</td>
 		</tr>

@@ -24,7 +24,7 @@ $DetalleTipi = $_POST['detalletipi'];
 $fecha = date("Y-m-d h:i:s A");
 $base = $_POST['base'];
 
-$up = $con -> query ("UPDATE ventadetarjetas SET idproducto='$idproducto',cedula='$cedula',nombre='$nombre',estado='$estado',tel1='$tel1',tel2='$tel2',tel3='$tel3',tel4='$tel4',tel5='$tel5',tel6='$tel6',tel7='$tel7',direccion='$direccion',barrio='$barrio',localidad='$localidad',tipificacion='$Tipificacion',detalletipi='$DetalleTipi',fecha='$fecha',base='$base'
+$up = $con -> query ("UPDATE ventadetarjetas SET idproducto='$idproducto',cedula='$cedula',nombre='$nombre',estado='$estado',tel1='$tel1',tel2='$tel2',tel3='$tel3',tel4='$tel4',tel5='$tel5',tel6='$tel6',tel7='$tel7',direccion='$direccion',barrio='$barrio',localidad='$localidad',tipificacion='$Tipificacion',detalletipi='$DetalleTipi',fecha='$fecha',base='$base',motivo1='$motivo1',motivo2='$motivo2',motivo3='$motivo3'
 WHERE idproducto='$idproducto'");
 
 if ($up) {

@@ -1,0 +1,83 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+	margin:0;
+	padding:0;
+	list-style:none;	
+}
+
+header#index{
+	position:relative;
+	margin:40px auto 0px auto;
+	width:350px;
+	height:130px;
+	background:#EEECEC;
+	//background:rgba(0, 128, 128,.9);
+}
+
+#logo{
+	position:relative;
+	margin:10px auto 0px auto;
+	width:247px;
+	height:115px;
+	line-height:115px;	
+}
+
+#formulario{
+	position:relative;
+	margin:0px auto 0px auto;
+	width:350px;
+	height:197px;
+	//background:#EEECEC;
+}
+#formulario h4{
+	width:350px;
+	height:50px;
+	text-align:center;
+	line-height:50px;
+	//background:rgba(128, 0, 0,.9);
+	background:rgba(0, 128, 128,.9);
+	margin:0px auto 5px auto;
+	color:white;
+	font-family: 'Quicksand', sans-serif;
+}
+
+#formulario input{
+	width:325px;
+	padding:10px;
+	margin:5px 0px 5px 0px;
+}
+
+#formulario input[type="text"]{
+	background:url(../img/iconuser.jpg);
+	background-repeat:no-repeat;
+	background-position:right;
+	background-size:contrain;
+}
+
+#formulario input[type="password"]{
+	background:url(../img/iconpass.jpg);
+	background-repeat:no-repeat;
+	background-position:right;
+	background-size:contrain;
+}
+
+#formulario input[type="submit"]{
+	//background:rgba(128, 0, 0,.9);
+	background:rgba(0, 128, 128,.9);
+	width:350px;
+	font-family: 'Quicksand', sans-serif;
+	font-size:15px;
+	font-weight: bold;
+	color:white;
+	border-radius:1%;
+}
+
+#formulario input[type="submit"]:hover{
+	background:rgba(152, 100, 83,.4);	
+}
+
+#formulario input[type="submit"]:active{
+	background:rgba(108, 71, 59,1);
+}

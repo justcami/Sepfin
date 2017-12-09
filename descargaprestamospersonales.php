@@ -14,6 +14,7 @@ if(!$result )
 		}
 		while($row = $result->fetch_assoc()){
         $column_array[] = $row;
+		echo $row['cedula'];
 		}
 		//cabeceras para descarga
 header("Content-Type: text/html; charset=utf8");

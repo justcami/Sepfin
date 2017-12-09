@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="es-ES">
-    <head>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="css2/estilos.css" type="text/css" rel="stylesheet" media="">
 <title>Identifiquese</title>
-   </head>
-   
-    <body>
-        <center>
+</head>
+<body>
+	<header id="index">
+        <div id="logo">
             <img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
-            <h3 style="color:blue;">ACCESO CRM SEPFIN - IDENTIFIQUESE</h3>
-    <table>
-        <form action="validar.php" method="POST">
-        <tr> <td>Usuario</td>
-            <td><input type="text" name="usuario" placeholder="Usuario" required></td>
-            </tr>
-            <tr>
-                <td>Contraseña</td>
-                <td><input type="password" name="pass" placeholder="Contraseña" required></td>
-                <tr><th colspan="2"><br><input type="submit" value="Entrar"></th></tr>
-            </form>
-            </tr>   
-    </table>
-        </center>
-    </body>
+		<div>	
+    </header>
+	<div id="formulario">
+	    <form action="validar.php" method="POST">
+			<h4>ACCESO CRM SEPFIN - IDENTIFIQUESE</h4>
+				<input type="text" name="usuario" placeholder="Usuario" required>
+				<input type="password" name="pass" placeholder="Contraseña" required>
+				<input type="submit" value="Ingresar">
+        </form>    
+	</div>
+</body>
 </html>
+<?php include("templates/footer.php"); ?>

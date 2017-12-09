@@ -2,38 +2,33 @@
 include("seguridad.php");
 include ('conexion.php');
 error_reporting (0);
-
 $idproducto = $_REQUEST['idproducto'];	
 $sql = "select * from compradecartera WHERE idproducto='$idproducto'";
 ?>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Edicion de Registros</title>
+<script src="js2/enter.js"></script>
 		
-		<!--Centrar texto mostrado en un input text-->
+<!--Centrar texto mostrado en un input text-->
 <style type="text/css">
 <!--
 .inputcentrado {
 	text-align: center;
+	width:100px;
+	height:auto;
 	background-color:LAVENDER;
    }
--->
-</style>
 
-		<!--Centrar texto mostrado en un input text-->
-<style type="text/css">
-<!--
 .selectencontrado {
 	text-align: center;
+	width:100px;
+	font-size: 12px;
 	background-color:LIGHTSALMON;
+	
    }
--->
-</style>
 
-<style>
-<!--
 table tr:nth-child(even) {
 	background-color: #eee;
 }
@@ -42,15 +37,45 @@ table tr:nth-child(odd) {
 	background-color: #fff;
 }
 
-table {
-	width: 5000;
+table{
+	font-weight: bold;
+}
+
+.table3 {
+	width: 1100;
+	font-size: 14px;
+	background: #C6F0E3;
+}
+
+.input1 {
+	width:100px;
+	height:auto;
+	font-size: 12px;
+	text-align: center;
+}
+
+.input2 {
+	width:400px;
+	height:100px;
+	font-size: 12px;
+}
+
+.input3 {
+	width:200px;
+	font-size: 12px;
+	text-align: center;
+}
+
+.input4 {
+	width:300px;
+	height:100px;
 	font-size: 12px;
 }
 -->
 </style>
    
 </head>
-   <body>
+<body>
 <br>
 
 <form action="reportecompracartera.php" method="POST" onsubmit="return confirm('Esta Seguro de que no quiere realizar cambios?');">
@@ -60,63 +85,13 @@ table {
 <center>
    <header>
        <img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>      
-       <b><p> EDICION DE REGISTROS </p></b>
+       <b><p> EDICION REGISTROS COMPRA DE CARTERA</p></b>
    </header>
 </center>
-   
-   <center style="color:blue"><strong>
-			Esta Editando un Registro de: Compra de Cartera
-			</strong></center>
-        <br>
-		
-<form id="form1" name="form1" action="updateregistrocompraadmin.php" method="post">
-<table align="center" cellspacing="5" cellpadding="5" border="3" border="1">   
-			<tr align="center">
-			<th>CEDULA</th>
-            <th>NOMBRE</th>
-            <th>TASA</th>
-			<th>EXTRACUPO</th>
-			<th>CUPO DISPONIBLE</th>
-			<th>POTENCIAL TDC</th>
-			<th>TELEFONO 1</th>
-			<th>TELEFONO 2</th>
-			<th>TELEFONO 3</th>
-			<th>TELEFONO 4</th>
-			<th>TELEFONO 5</th>
-			<th>TELEFONO 6</th>
-			<th>TELEFONO 7</th>
-			<th>TELEFONO 8</th>
-			<th>TELEFONO 9</th>
-			<th>TELEFONO 10</th>
-			<th>TELEFONO 11</th>
-			<th>TELEFONO 12</th>
-			<th>TELEFONO 13</th>
-			<th>TELEFONO 14</th>
-			<th>TELEFONO 15</th>
-			<th>TELEFONO 16</th>
-			<th>TELEFONO 17</th>
-			<th>TELEFONO 18</th>
-			<th>TELEFONO 19</th>
-			<th>TELEFONO 20</th>
-			<th>TELEFONO 21</th>
-			<th>TELEFONO 22</th>
-			<th>MOTIVO 1</th>
-			<th>MOTIVO 2</th>
-			<th>MOTIVO 3</th>
-			<th>TIPIFICACION</th>
-			<th>DETALLE TIPIFICACION</th>
-			<th>VENDEDOR</th>
-			<th>BANCO</th>
-			<th>Tipo Tarjeta (F o P)</th>
-			<th>Franquicia (F)</th>
-			<th>Aliado (P)</th>
-			<th>No de tarjeta Banco Emisor</th>
-			<th>Valor Compra</th>
-			<th>No de Cuotas</th>
-			<th>Teléfono</th>
-			<th>FECHA EDICION</th>
-			<th>Actualizar</th>
-			</tr>
+
+<form id="form1" name="form1" action="updateregistrocompraadmin.php" method="post" onkeypress="return CanCelEnter()">
+
+<center><table border="1" class="table3">
                  <?php
 		$result = $con->query($sql);
 		if(!$result )
@@ -126,40 +101,9 @@ table {
 		while ($fila = $result->fetch_assoc())
 		{			
          ?>
-		<tr align="center">
-            <td><input type="text" style="text-align:center" name="Cedula" value="<?php echo $fila['cedula']?>"></td>
-            <td><input type="text" style="text-align:center" name="Nombre" value="<?php echo $fila['nombre']?>"></td>
-			<td><input type="text" style="text-align:center" name="Tasa" value="<?php echo $fila['tasa']?>"></td>
-			<td><input type="text" style="text-align:center" name="extracupo" value="<?php echo $fila['extracupo']?>"></td>
-			<td><input type="text" name="cupodispo" style="text-align:center" value="<?php echo $fila['cupodispo']?>"></td>
-			<td><input type="text" style="text-align:center" name="potencialtdc" value="<?php echo $fila['potencialtdc']?>"></td>
-			<td><input type="text" name="tel1" style="text-align:center" value="<?php echo $fila['tel1']?>"></td>
-			<td><input type="text" name="tel2" style="text-align:center" value="<?php echo $fila['tel2']?>"></td>
-			<td><input type="text" name="tel3" style="text-align:center" value="<?php echo $fila['tel3']?>"></td>
-			<td><input type="text" name="tel4" style="text-align:center" value="<?php echo $fila['tel4']?>"></td>
-			<td><input type="text" name="tel5" style="text-align:center" value="<?php echo $fila['tel5']?>"></td>
-			<td><input type="text" name="tel6" style="text-align:center" value="<?php echo $fila['tel6']?>"></td>
-			<td><input type="text" name="tel7" style="text-align:center" value="<?php echo $fila['tel7']?>"></td>
-			<td><input type="text" name="tel8" style="text-align:center" value="<?php echo $fila['tel8']?>"></td>
-			<td><input type="text" name="tel9" style="text-align:center" value="<?php echo $fila['tel9']?>"></td>
-			<td><input type="text" name="tel10" style="text-align:center" value="<?php echo $fila['tel10']?>"></td>
-			<td><input type="text" name="tel11" style="text-align:center" value="<?php echo $fila['tel11']?>"></td>
-			<td><input type="text" name="tel12" style="text-align:center" value="<?php echo $fila['tel12']?>"></td>
-			<td><input type="text" name="tel13" style="text-align:center" value="<?php echo $fila['tel13']?>"></td>
-			<td><input type="text" name="tel14" style="text-align:center" value="<?php echo $fila['tel14']?>"></td>
-			<td><input type="text" name="tel15" style="text-align:center" value="<?php echo $fila['tel15']?>"></td>
-			<td><input type="text" name="tel16" style="text-align:center" value="<?php echo $fila['tel16']?>"></td>
-			<td><input type="text" name="tel17" style="text-align:center" value="<?php echo $fila['tel17']?>"></td>
-			<td><input type="text" name="tel18" style="text-align:center" value="<?php echo $fila['tel18']?>"></td>
-			<td><input type="text" name="tel19" style="text-align:center" value="<?php echo $fila['tel19']?>"></td>
-			<td><input type="text" name="tel20" style="text-align:center" value="<?php echo $fila['tel20']?>"></td>
-			<td><input type="text" name="tel21" style="text-align:center" value="<?php echo $fila['tel21']?>"></td>
-			<td><input type="text" name="tel22" style="text-align:center" value="<?php echo $fila['tel22']?>"></td>
-			<td width="400"><input type="text" name="motivo1" style="text-align:center" value="<?php echo $fila['motivo1']?>"></td>
-			<td width="400"><input type="text" name="motivo2" style="text-align:center" value="<?php echo $fila['motivo2']?>"></td>
-			<td width="400"><input type="text" name="motivo3" style="text-align:center" value="<?php echo $fila['motivo3']?>"></td>
-			<td>
-			<select name="Tipificacion" class="selectencontrado">
+<tr align="center"><td><b>Cedula</b><br><input type="text" name="Cedula" class="input1" value="<?php echo $fila['cedula']?>" onkeydown="cedula(this)"></td><td colspan="2">Nombre<br><input type="text" class="input3" name="Nombre" id="Nombre" value="<?php echo $fila['nombre']?>" onkeydown="nombre(this)"></td><td>Tasa<br><input type="text" class="input1" name="Tasa" value="<?php echo $fila['tasa']?>" onkeydown="tasa(this)"></td><td>ExtraCupo<br><input type="text" class="input1" name="extracupo" value="<?php echo $fila['extracupo']?>" onkeydown="extra(this)"></td><td>Cupo Disponible<br><input type="text" name="cupodispo" class="input1" value="<?php echo $fila['cupodispo']?>" onkeydown="cupo(this)"></td><td>Potencial TDC<br><input type="text" class="input1" name="potencialtdc" value="<?php echo $fila['potencialtdc']?>" onkeydown="poten(this)"></td><td>Telefono 1<br><input type="text" name="tel1" class="input1" value="<?php echo $fila['tel1']?>" onkeydown="tela(this)"></td><td>Telefono 2<br><input type="text" name="tel2" class="input1" value="<?php echo $fila['tel2']?>" onkeydown="telb(this)"></td><td>Telefono 3<br><input type="text" name="tel3" class="input1" value="<?php echo $fila['tel3']?>" onkeydown="telc(this)"></td><td>Telefono 4<br><input type="text" name="tel4" class="input1" value="<?php echo $fila['tel4']?>" onkeydown="teld(this)"></td></tr>
+<tr align="center"><td>Telefono 5<br><input type="text" name="tel5" class="input1" value="<?php echo $fila['tel5']?>" onkeydown="tele(this)"></td><td>Telefono 6<br><input type="text" name="tel6" class="input1" value="<?php echo $fila['tel6']?>" onkeydown="telf(this)"></td><td>Telefono 7<br><input type="text" class="input1" name="tel7" value="<?php echo $fila['tel7']?>" onkeydown="telg(this)"></td><td>Telefono 8<br><input type="text" class="input1" name="tel8" value="<?php echo $fila['tel8']?>" onkeydown="telh(this)"></td><td>Telefono 9<br><input type="text" class="input1" name="tel9" value="<?php echo $fila['tel9']?>" onkeydown="teli(this)"></td><td>Telefono 10<br><input type="text" name="tel10" class="input1" value="<?php echo $fila['tel10']?>" onkeydown="telj(this)"></td><td>Telefono 11<br><input type="text" class="input1" name="tel11" value="<?php echo $fila['tel11']?>" onkeydown="telk(this)"></td><td>Telefono 12<br><input type="text" name="tel12" class="input1" value="<?php echo $fila['tel12']?>" onkeydown="tell(this)"></td><td>Telefono 13<br><input type="text" name="tel13" class="input1" value="<?php echo $fila['tel13']?>" onkeydown="telm(this)"></td><td>Telefono 14<br><input type="text" name="tel14" class="input1" value="<?php echo $fila['tel14']?>" onkeydown="teln(this)"></td><td>Telefono 15<br><input type="text" name="tel15" class="input1" value="<?php echo $fila['tel15']?>" onkeydown="telo(this)"></td></tr>
+<tr align="center"><td>Telefono 16<br><input type="text" name="tel16" class="input1" value="<?php echo $fila['tel16']?>" onkeydown="telp(this)"></td><td>Telefono 17<br><input type="text" name="tel17" class="input1" value="<?php echo $fila['tel17']?>" onkeydown="telq(this)"></td><td>Telefono 18<br><input type="text" class="input1" name="tel18" value="<?php echo $fila['tel18']?>" onkeydown="telr(this)"></td><td>Telefono 19<br><input type="text" class="input1" name="tel19" value="<?php echo $fila['tel19']?>" onkeydown="tels(this)"></td><td>Telefono 20<br><input type="text" class="input1" name="tel20" value="<?php echo $fila['tel20']?>" onkeydown="telt(this)"></td><td>Telefono 21<br><input type="text" name="tel21" class="input1" value="<?php echo $fila['tel21']?>" onkeydown="telu(this)"></td><td>Telefono 22<br><input type="text" class="input1" name="tel22" value="<?php echo $fila['tel22']?>" onkeydown="telv(this)"></td><td>Vendedor<br><input type="text" class="inputcentrado" name="usuario" value="<?php echo $fila['Usuario']?>" readonly="readonly"></td><td>Tipificacion<select name="Tipificacion" class="selectencontrado" onkeydown="tipi(this)">
             <option><?php echo $fila['tipificacion']?></option>
 			<option>AGENDADO</option>
             <option>ENTREGADO</option>
@@ -169,27 +113,20 @@ table {
 			<option>FUERA DE LA CIUDAD</option>
 			<option>NO LE INTERESA</option>
 			<option>NO APLICA</option>
-			</select>
-			</td>
-			<td><input type="text" name="detalletipi" style="text-align:center" value="<?php echo $fila['detalletipi']?>"></td>
-			<td><input type="text" class="inputcentrado" name="usuario" value="<?php echo $fila['Usuario']?>" readonly="readonly"></td>
-			<td><input type="text" name="banco" style="text-align:center" value="<?php echo $fila['banco']?>"></td>
-			<td><input type="text" name="tipotarjetafop" style="text-align:center" value="<?php echo $fila['tipotarjetafop']?>"></td>
-			<td><input type="text" name="franquiciaf" style="text-align:center" value="<?php echo $fila['franquiciaf']?>"></td>
-			<td><input type="text" name="aliadop" style="text-align:center" value="<?php echo $fila['aliadop']?>"></td>
-			<td><input type="text" name="notarbancoemisor" style="text-align:center" value="<?php echo $fila['notarbancoemisor']?>"></td>
-			<td><input type="text" name="valorcompra" style="text-align:center" value="<?php echo $fila['valorcompra']?>"></td>
-			<td><input type="text" name="nocuotas" style="text-align:center" value="<?php echo $fila['nocuotas']?>"></td>
-			<td><input type="text" name="telefono" style="text-align:center" value="<?php echo $fila['telefono']?>"></td>
-			<td><input type="text" name="fecha" class="inputcentrado" value="<?php 
-			$fecha= date("Y-m-d h:i:s A");
+			</select></td>
+			<td colspan="2">Detalle Tipifi<br><input type="text" name="detalletipi" class="input3" value="<?php echo $fila['detalletipi']?>" onkeydown="detalle(this)"></td></tr>
+<tr align="center" height="100"><td colspan="4">Motivo 1<br><textarea name="motivo1" class="input2" onkeydown="motivoa(this)"><?php echo $fila['motivo1']?></textarea></td><td colspan="3">Motivo 2<br><textarea name="motivo2" class="input4" onkeydown="motivob(this)"><?php echo $fila['motivo2']?></textarea></td><td colspan="4">Motivo 3<br><textarea name="motivo3" class="input2" onkeydown="motivoc(this)"><?php echo $fila['motivo3']?></textarea></td></tr>
+<tr align="center"><td>Banco<br><input type="text" name="banco" class="input1" value="<?php echo $fila['banco']?>" onkeydown="ban(this)"></td><td colspan="2">Tipo Tarjeta (FoP)<br><input type="text" name="tipotarjetafop" class="input3" value="<?php echo $fila['tipotarjetafop']?>" onkeydown="tipotar(this)"></td><td>Franquicia (F)<br><input type="text" class="input1" name="franquiciaf" value="<?php echo $fila['franquiciaf']?>" onkeydown="franqui(this)"></td><td>Aliado (P)<br><input type="text" class="input1" name="aliadop" value="<?php echo $fila['aliadop']?>" onkeydown="aliado(this)"></td><td colspan="2">No Tarj Ban Emisor<br><input type="text" class="input3" name="notarbancoemisor" value="<?php echo $fila['notarbancoemisor']?>" onkeydown="notar(this)"></td><td>Valor Compra<br><input type="text" name="valorcompra" class="input1" value="<?php echo $fila['valorcompra']?>" onkeydown="valor(this)"></td><td>No de Cuotas<br><input type="text" class="input1" name="nocuotas" value="<?php echo $fila['nocuotas']?>" onkeydown="nocuo(this)"></td><td>Telefono<br><input type="text" name="telefono" class="input1" value="<?php echo $fila['telefono']?>" onkeypress="return ActiVarEnter()"></td>
+			<td>Fecha<br><input type="text" name="fecha" class="inputcentrado" value="<?php 
+			$fecha= date("Y-m-d");
 			echo $fecha;
-			?>"readonly="readonly"></td>
-			<input type="hidden" name="ProductoID" value="<?php echo $fila['idproducto']?>"></input>
-			<td><input type="submit" style="text-align:center" value="Actualizar" align="right"></td>
-		</tr>
-            <?php } ?>
-        </table>
-    </body>
+			?>"readonly="readonly"></td></tr>
+<tr align="center">
+<input type="hidden" name="ProductoID" value="<?php echo $fila['idproducto']?>"></input><td colspan="11">
+<b><input type="submit" style="text-align:center" name="actualizar" value="Actualizar" align="right" onkeypress="return ActiVarEnter()"></b></td></tr>
+<?php } ?>
+</table></center>
+</form>
+</body>
 </html>
 <?php include("templates/footer.php"); ?>

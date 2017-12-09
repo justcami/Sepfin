@@ -17,7 +17,9 @@ $sql = "select * from ventadetarjetas WHERE idproducto='$idproducto'";
 <!--
 .inputcentrado {
 	text-align: center;
-	background-color:LAVENDER;
+	background-color:LAVENDER;	
+	width:100px;
+	font-size: 12px;
    }
 -->
 </style>
@@ -27,6 +29,8 @@ $sql = "select * from ventadetarjetas WHERE idproducto='$idproducto'";
 .selectencontrado {
 	text-align: center;
 	background-color:LIGHTSALMON;
+	width:100px;
+	font-size: 12px;
    }
 -->
 </style>
@@ -40,10 +44,47 @@ table tr:nth-child(odd) {
 	background-color: #fff;
 }
 
-table {
-	width: 3000;
+table{
+	font-weight: bold;
+}
+
+.table3 {
+	width: 900;
+	font-size: 14px;
+	background: #C6F0E3;
+}
+
+.input1 {
+	width:100px;
+	height:auto;
+	font-size: 12px;
+	text-align: center;
+}
+
+.input2 {
+	width:300px;
+	height:100px;
 	font-size: 12px;
 }
+
+.input3 {
+	width:200px;
+	font-size: 12px;
+	text-align: center;
+}
+
+.input4 {
+	width:200px;
+	height:100px;
+	font-size: 12px;
+}
+
+.input5 {
+	width:300px;
+	font-size: 12px;
+	text-align: center;
+}
+
 -->
 </style>  
 </head>
@@ -57,43 +98,14 @@ table {
 <center>
    <header>
        <img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>      
-       <b><p> EDICION DE REGISTROS </p></b>
+       <b><p> EDICION REGISTROS VENTA DE TARJETAS DE CREDITO</p></b>
    </header>
 </center>
-   
-   <center style="color:blue"><strong>
-			Esta Editando un Registro de: Ventas de Tarjetas de Credito
-			</strong></center>
-        <br>
-		
-       <form id="form1" name="form1" action="updateregistroventaadmin.php" method="post">
 
+<form id="form1" name="form1" action="updateregistroventaadmin.php" method="post" onkeypress="return CanCelEnter()">
 
-<table align="center" cellspacing="5" cellpadding="5" border="3" border="1">
-			<tr align="center">
-			<th>CEDULA</th>
-            <th>NOMBRE</th>
-			<th>ESTADO</th>
-			<th>TELEFONO 1</th>
-			<th>TELEFONO 2</th>
-			<th>TELEFONO 3</th>
-			<th>TELEFONO 4</th>
-			<th>TELEFONO 5</th>
-			<th>TELEFONO 6</th>
-			<th>TELEFONO 7</th>
-			<th>DIRECCION</th>
-			<th>BARRIO</th>
-			<th>LOCALIDAD</th>
-			<th>MOTIVO 1</th>
-			<th>MOTIVO 2</th>
-			<th>MOTIVO 3</th>
-			<th>TIPIFICACION</th>
-			<th>DETALLE TIPIFICACION</th>
-			<th>VENDEDOR</th>
-			<th>FECHA EDICION</th>
-			<th>BASE</th>
-			<th>Actualizar</th>
-			</tr>
+<center>
+<table border="1" class="table3">
                  <?php
 		$result = $con->query($sql);
 		if(!$result )
@@ -101,47 +113,61 @@ table {
 		 	die('Ocurrio un error al obtener los valores de la base de datos: ');
 		}
 		while ($fila = $result->fetch_assoc())
-		{			
-         ?>
-		<tr align="center">
-            <td><input type="text" style="text-align:center" name="Cedula" value="<?php echo $fila['cedula']?>"></td>
-            <td><input type="text" style="text-align:center" name="Nombre" value="<?php echo $fila['nombre']?>"></td>
-			<td><input type="text" name="estado" style="text-align:center" value="<?php echo $fila['estado']?>"></td>
-			<td><input type="text" name="tel1" style="text-align:center" value="<?php echo $fila['tel1']?>"></td>
-			<td><input type="text" name="tel2" style="text-align:center" value="<?php echo $fila['tel2']?>"></td>
-			<td><input type="text" name="tel3" style="text-align:center" value="<?php echo $fila['tel3']?>"></td>
-			<td><input type="text" name="tel4" style="text-align:center" value="<?php echo $fila['tel4']?>"></td>
-			<td><input type="text" name="tel5" style="text-align:center" value="<?php echo $fila['tel5']?>"></td>
-			<td><input type="text" name="tel6" style="text-align:center" value="<?php echo $fila['tel6']?>"></td>
-			<td><input type="text" name="tel7" style="text-align:center" value="<?php echo $fila['tel7']?>"></td>
-			<td><input type="text" name="direccion" style="text-align:center" value="<?php echo $fila['direccion']?>"></td>
-			<td><input type="text" name="barrio" style="text-align:center" value="<?php echo $fila['barrio']?>"></td>
-			<td><input type="text" name="localidad" style="text-align:center" value="<?php echo $fila['localidad']?>"></td>
-			<td><input type="text" name="motivo1" style="text-align:center" value="<?php echo $fila['motivo1']?>"></td>
-			<td><input type="text" name="motivo2" style="text-align:center" value="<?php echo $fila['motivo2']?>"></td>
-			<td><input type="text" name="motivo3" style="text-align:center" value="<?php echo $fila['motivo3']?>"></td>
-			<td>
-			<select name="Tipificacion" class="selectencontrado">
+		{?>
+<tr align="center">
+<td><b>Cedula</b><br><input type="text" class="input1" name="Cedula" value="<?php echo $fila['cedula']?>" onkeydown="cedula(this)"></td>
+<td colspan="2">Nombre<br><input type="text" class="input3" name="Nombre" id="Nombre" value="<?php echo $fila['nombre']?>" onkeydown="nombre(this)"></td>
+<td colspan="3">Estado<br><input type="text" class="input5" name="estado" value="<?php echo $fila['estado']?>" onkeydown="tasa(this)"></td>
+<td>Telefono 1<br><input type="text" class="input1" name="tel1" value="<?php echo $fila['tel1']?>" onkeydown="extra(this)"></td>
+<td>Telefono 2<br><input type="text" class="input1" name="tel2" value="<?php echo $fila['tel2']?>" onkeydown="cupo(this)"></td>
+<td>Telefono 3<br><input type="text" class="input1" name="tel3" value="<?php echo $fila['tel3']?>" onkeydown="poten(this)"></td>
+</tr>
+
+<tr align="center">
+<td>Telefono 4<br><input type="text" name="tel4" class="input1" value="<?php echo $fila['tel4']?>" onkeydown="tela(this)"></td>
+<td>Telefono 5<br><input type="text" name="tel5" class="input1" value="<?php echo $fila['tel5']?>" onkeydown="telb(this)"></td>
+<td>Telefono 6<br><input type="text" name="tel6" class="input1" value="<?php echo $fila['tel6']?>" onkeydown="telc(this)"></td>
+<td>Telefono 7<br><input type="text" name="tel7" class="input3" value="<?php echo $fila['tel7']?>" onkeydown="teld(this)"></td>
+<td colspan="3">Direccion<br><input type="text" name="direccion" class="input5" value="<?php echo $fila['direccion']?>" onkeydown="tele(this)"></td>
+<td colspan="2">Barrio<br><input type="text" name="barrio" class="input3" value="<?php echo $fila['barrio']?>" onkeydown="telf(this)"></td>
+</tr>
+
+<tr align="center" height="100">
+<td colspan="3">Motivo 1<br><textarea name="motivo1" class="input2" onkeydown="motivoa(this)"><?php echo $fila['motivo1']?></textarea></td>
+<td colspan="3">Motivo 2<br><textarea name="motivo2" class="input2" onkeydown="motivob(this)"><?php echo $fila['motivo2']?></textarea></td>
+<td colspan="3">Motivo 3<br><textarea name="motivo3" class="input2" onkeydown="motivoc(this)"><?php echo $fila['motivo3']?></textarea></td>
+</tr>
+
+<tr align="center">
+<td>Localidad<br><input type="text" class="input1" name="localidad" value="<?php echo $fila['localidad']?>" onkeydown="telg(this)"></td>
+<td>Vendedor<br><input type="text" class="inputcentrado" name="usuario" value="<?php echo $fila['Usuario']?>" readonly="readonly"></td>
+			<td>Tipificacion<select name="Tipificacion" class="selectencontrado" onkeydown="tipi(this)">
             <option><?php echo $fila['tipificacion']?></option>
+			<option>AGENDADO</option>
+            <option>ENTREGADO</option>
             <option>ILOCALIZADO</option>
             <option>LLAMAR</option>
+			<option>REAGENDAR</option>
+			<option>FUERA DE LA CIUDAD</option>
 			<option>NO LE INTERESA</option>
 			<option>NO APLICA</option>
-			<option>VENTA</option>
-			</select>
-			</td>
-			<td><input type="text" name="detalletipi" style="text-align:center" value="<?php echo $fila['detalletipi']?>"></td>
-			<td><input type="text" class="inputcentrado" name="usuario" value="<?php echo $fila['Usuario']?>" readonly="readonly"></td>
-			<td><input type="text" name="fecha" class="inputcentrado" value="<?php 
-			$fecha= date("Y-m-d h:i:s A");
+			</select></td>
+			<td colspan="2">Detalle Tipifi<br><input type="text" name="detalletipi" class="input3" value="<?php echo $fila['detalletipi']?>" onkeydown="detalle(this)"></td>
+			<td>Fecha Edicion<br><input type="text" name="fecha" class="inputcentrado" value="<?php 
+			$fecha= date("Y-m-d");
 			echo $fecha;
 			?>"readonly="readonly"></td>
-			<td><input type="text" name="base" style="text-align:center"></td>
-			<input type="hidden" name="ProductoID" value="<?php echo $fila['idproducto']?>"></input>
-			<td><input type="submit" style="text-align:center" value="Actualizar" align="right"></td>
-		</tr>
-            <?php } ?>
-        </table>
-    </body>
+			<td colspan="3">Base<br><input type="text" name="base" class="input5" value="<?php echo $fila['base']?>" onkeydown="ban(this)"></td>
+</tr>
+
+<tr align="center">
+<input type="hidden" name="ProductoID" value="<?php echo $fila['idproducto']?>"></input>
+<td colspan="9"><input type="submit" style="text-align:center" name="actualizar" value="Actualizar" align="right" onkeypress="return ActiVarEnter()"></td>
+</tr>
+<?php } ?>
+</table>
+</center>
+</form>		
+</body>
 </html>
 <?php include("templates/footer.php"); ?>

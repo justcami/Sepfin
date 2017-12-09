@@ -1,0 +1,92 @@
+@charset "utf-8";
+/* CSS Document */
+
+.inputcentrado {
+	text-align: center;
+	width:200px;
+	font-size: 12px;
+	background-color:LAVENDER;
+   }
+
+.selectencontrado {
+	text-align: center;
+	width:200px;
+	font-size: 12px;
+	text-align: center;
+	background-color:LIGHTSALMON;
+   }
+
+table tr:nth-child(even) {
+	background-color: #eee;
+}
+ 
+table tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+table{
+	font-weight: bold;
+}
+
+.table3 {
+	width: 1100;
+	font-size: 14px;
+	background: #C6F0E3;
+}
+
+.input1 {
+	width:100px;
+	height:auto;
+	font-size: 12px;
+	text-align: center;
+}
+
+.input2 {
+	width:400px;
+	height:100px;
+	font-size: 12px;
+}
+
+.input3 {
+	width:200px;
+	font-size: 12px;
+	text-align: center;
+}
+
+.inputnom {
+	width:200px;
+	font-size: 12px;
+	text-align: center;
+}
+
+.inputdir {
+	width:300px;
+	height:100px;
+	font-size: 12px;
+	text-align: center;
+}
+
+.input4 {
+	width:200px;
+	height:50px;
+	font-size: 12px;
+}
+
+.input5 {
+	width:700px;
+	height:50px;
+	font-size: 12px;
+}
+
+.input6 {
+	width:200px;
+	height:50px;
+	font-size: 12px;
+}
+
+.input7 {
+	width:200px;
+	height:50px;
+	font-size: 12px;
+	background-color:LAVENDER;
+}
