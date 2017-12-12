@@ -46,12 +46,12 @@ if ($up) {
 
 echo "<script>
         alert('Usuario Actualizado Exitosamente');
-        location.href='usuarios.php/';
+        location.href='usuarios.php';
         </script>";
 }else{
     echo "<script>
         alert('No se pudo actualizar el Usuario');
-        location.href='usuarios.php/';
+        location.href='usuarios.php';
         </script>"; 
 }
 ?>

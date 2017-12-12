@@ -18,47 +18,52 @@ $perfil="Agente";
 }
 ?>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Formulario Edicion de Usuarios</title>
-        <link href="css2/estilo.css" rel="stylesheet">
-        <script src="js2/jquery.js"></script>
-        <script src="js2/myjava.js"></script>   
-   </head>
-   <body>
-<br>
-            <a href="usuarios.php/">Regresar Sin Realizar Cambios</a>   
-   <header>
-       <img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>      
-       <p> EDICION DE USUARIOS </p>
-   </header>
-       <form id="form1" name="form1" action="updateusuario.php" method="post" onsubmit="return dimePropiedades()">
-           <input type="hidden" name="id_usuario2" value="<?php echo $id_usuario ?>" />
-      <table width="100" border="3" align="center">
-  <tr>
-    <td> <section>
-    Nombre y Apellido: <input type="text" name="NombreyApellido" value="<?php echo $fila['Nombre'] ?>"><br> 
-	Usuario: <input type="text" name="usuario" value="<?php echo $fila['usuario'] ?>"><br>
-    Contrasena: <input type="text" name="passw" value="<?php echo $fila['contrasena'] ?>"><br>
-    Perfil: <select name="perfil">
-            <option><?php echo $perfil ?></option>
-			<option>Administrador</option>
-            <option>Agente</option>
-        </select><br>
-	Producto: <select name="Producto" id="Producto"> 
-		<option><?php echo $fila['producto'] ?></option>
-         <?php	
-          $query = $con -> query ("SELECT * FROM productos");								
-          while ($valores = mysqli_fetch_assoc($query)) {
-            echo '<option value="'.$valores['idproducto'].'">'.$valores['Producto'].'</option>';
-          }
-         ?> 
-		</select> <br><br>
-	<center><input type="submit" value="Actualizar" align="right"></center>
-    </form>
-   </section></td>
-  </tr>
-</table>
-   </body>
-    </html>
+
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="css2/estilos.css" type="text/css" rel="stylesheet" media="">
+<title>Formulario Edicion de Usuarios</title>
+</head>
+<body>
+	<header id="crear">
+        <div id="logocrear">
+            <img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
+		</div>
+		<a href="usuarios.php">
+		<div id="iconoac" class="crea">
+		<img src="img/regresar.png" width="29" height="29" alt=""/>
+		</div>
+		</a>
+		<div id="iconobc" class="crea">Regresar
+		</div>		
+    </header>
+	<div id="formulariocrear">
+	    <form action="updateusuario.php" method="POST">
+		<input type="hidden" name="id_usuario2" value="<?php echo $id_usuario ?>" />
+			<h4>EDICION DE USUARIOS</h4>
+				<input type="text" name="NombreyApellido" value="<?php echo $fila['Nombre'] ?>" required>
+				<input type="text" class="logo" name="usuario" value="<?php echo $fila['usuario'] ?>" required>
+				<input type="password" class="logo" name="passw" value="<?php echo $fila['contrasena'] ?>" required>
+				<select name="perfil">
+				<option><?php echo $perfil ?></option>
+				<option>Administrador</option>
+				<option>Agente</option>
+				</select>
+				<select name="Producto" id="Producto"> 
+				<option><?php echo $fila['producto'] ?></option>
+				<?php	
+				$query = $con -> query ("SELECT * FROM productos");								
+				while ($valores = mysqli_fetch_assoc($query)) {
+				echo '<option value="'.$valores['idproducto'].'">'.$valores['Producto'].'</option>';
+				}
+				?> 
+				</select>
+				<input type="submit" value="Actualizar">
+        </form>    
+	</div>
+</body>
+</html>
+<?php include("templates/footer.php"); ?>

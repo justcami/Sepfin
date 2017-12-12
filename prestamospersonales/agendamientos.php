@@ -1,5 +1,5 @@
 <?php
-include("../seguridad4.php");
+include("../seguridad3.php");
 include ('../conexion3.php');
 include ('../conexion.php');
 error_reporting (0);
@@ -131,7 +131,7 @@ return true;
 				}
 				while ($row = $result->fetch_assoc())
 				{
-					if ($row['producto']=="Venta de Tarjetas") {
+					if ($row['producto']=="Prestamos Personales") {
 	        ?>
 		<tr id="trba">
             <td><?php echo $row['cedula'] ?></td>

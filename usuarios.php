@@ -2,48 +2,13 @@
 include("seguridad.php");
 include ('conexion3.php');
 ?>
-<?php 
-            echo "<b>Bienvenido: </b>";
-            echo $nuusuario."<br>";	
-            ?>
-            <a href="../logout.php">Cerrar Sesion</a><br>
-			<a href="../main.php">Regresar al inicio</a><br>
-			
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-<style>	
-<!--
-table tr:nth-child(even) {
-	background-color: #eee;
-}
- 
-table tr:nth-child(odd) {
-	background-color: #fff;
-}
-table {
-	width: auto;
-	text-align: center;
-	font-size: 14px;
-}
-body{
-	margin:2px;
-	background: #FFF;
-	font-family:"Times New Roman", Georgia, Serif;
-	min-width:1000px;
-}
-h3{
-	font-family:"Times New Roman", Georgia, Serif;
-}
--->
-</style>
-<title>CRM SEPFIN</title>
-<script src="js2/jquery.js"></script>
-<script src="js2/myjava.js"></script>   
-   
-   
-   <script language="JavaScript">
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+<link href="css2/estilos.css" type="text/css" rel="stylesheet" media="">
+<script language="JavaScript">
 function aviso(url){
 if (!confirm("CUIDADO!!  Va a proceder a eliminar un usuario, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.")) {
 return false;
@@ -54,48 +19,66 @@ return true;
 }
 }
 </script>
-   
-   </head>
-   <body>         
-<center>
-            <img src="../img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
-            <h3 style="color:blue;">USUARIOS SEPFIN</h3>
-</center>			
-   <?php
-   //<p>&nbsp;</p>
-   ?>
-   <table width="200" border="1" align="left">
-     <tr align="center"> 
-       <th scope="col" width="70%"><a href="../crearusuarios.php/">Crear Nuevos Usuarios</a></th>      
-     </tr>
-   </table><br><br>
-      
-        <table align="center" cellspacing="5" cellpadding="5" border="3" border="1" bgcolor=dddddd>
-            <tr>
-            <td colspan="4" align="center" bgcolor="blue"><font color="#FFFFFF"><strong>RECORD DE USUARIOS</strong></font></td>
-            </tr>
-        </table> <br>
-		
-        <table width="700" align="center" cellspacing="5" cellpadding="5" border="3" border="1">   
-            <th>Nombre</th>
-            <th>Usuario</th>
-            <th>Contrasena</th>
-            <th>Nivel Usuario</th>
-			<th>Producto</th>
-			<th>Estado</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
-            <?php
-            $sel = $con3 -> query("SELECT * FROM usuarios");
-            while ($fila = $sel ->fetch_assoc()){                
-            ?>
-        <tr>
-            <td align="cente"><?php echo $fila['Nombre'] ?></td>
-            <td align="center"><?php echo $fila['usuario'] ?></td>
-            <td align="center"><?php echo $fila['contrasena'] ?></td>
-            <td align="center">
+<title>Usuarios Sepfin</title>
+</head>
+
+<body>
+<header id="user">
+<div id="logouser">
+	<img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
+</div>
+<div class="bienve" id="usuarios">
 			<?php 
-			$perfil = $fila['Nivel_Usuario'];
+            echo "<b>Bienvenido: </b>";
+            echo $nuusuario."<br>";
+            ?>
+</div>
+<a href="logout.php">
+<div id="iconoau" class="usu">
+<img src="img/cerrarsesion.png" width="35" height="35" alt=""/>
+</div>
+</a>
+<div id="iconobu" class="usu">Cerrar Sesion
+</div>
+<a href="main.php">
+<div id="iconocu" class="usu">
+<img src="img/regresar.png" width="29" height="29" alt=""/>
+</div>
+</a>
+<div id="iconodu" class="usu">Regresar
+</div>
+</header>
+
+<nav id="usuarios">
+	<ul>
+		<li class="baner" id="record">Registro Usuarios Plataforma Sepfin</li>
+		<a href="crearusuarios.php"><li class="baner" id="crear">Crear Usuarios</li></a>
+	</ul>	
+</nav>
+<br>
+ <center>
+        <table class="usua">   
+            <tr>
+				<th>Nombre</th>
+				<th>Usuario</th>
+				<th>Contraseña</th>
+				<th>Nivel Usuario</th>
+				<th>Producto</th>
+				<th>Estado</th>
+				<th>Editar</th>
+				<th>Eliminar</th>
+				<?php
+				$sel = $con3 -> query("SELECT * FROM usuarios");
+				while ($fila = $sel ->fetch_assoc()){                
+				?>
+			</tr>
+			<tr id="trb">
+				<td align="cente"><?php echo $fila['Nombre'] ?></td>
+				<td align="center"><?php echo $fila['usuario'] ?></td>
+				<td align="center"><input type="password" value="<?php echo $fila['contrasena']?>" readonly></input></td>
+				<td align="center">
+				<?php 
+				$perfil = $fila['Nivel_Usuario'];
 			
 				if ($perfil==0)
 				{
@@ -104,31 +87,42 @@ return true;
 				$perfiladmin="Agente";
 				} 
 				echo $perfiladmin;
-			?>
-			</td>
-			<td align="center"><?php echo $fila['producto'] ?></td>
-			            <td align="center">
-			<?php
+				?>
+				</td>
+				<td><?php echo $fila['producto'] ?></td>
+				<td align="center">
+				<?php
 			
-			$perfil2 = $fila['cuentalogerroneo'];
-			$usuario3 = $fila['usuario'];
+				$perfil2 = $fila['cuentalogerroneo'];
+				$usuario3 = $fila['usuario'];
 				if ($perfil2<3)
 				{
 				$perfiladmin="Activo";
 				echo $perfiladmin;
 				}else{	
-				$estadobloq  =  "Desbloquear"; 
+				$estadobloq  =  "<label class=desblo>Desbloquear</label>"; 
 				$us=$fila['usuario'];
-			echo "<a href=/Sepfin/desbloqueouser.php?usuario=$us>$estadobloq</a>";} 
-			?>
-			</td>
-            <td align="center"><a href="../actualizarusuario.php?id_usuario=<?php echo $fila['id_usuario'] ?>">EDITAR</a></td>
-			<td align="center"><a href="javascript:;" onclick="aviso('../borrarusuario.php?id_usuario=<?php echo $fila['id_usuario']?>'); return false;">ELIMINAR</a></td>
-            <!--<td align="center"><a href="javascript:;" onclick="aviso('borrar.php?id_usuario=<?php echo $fila['id_usuario']?>'); return false;">eliminar</a></td>
-			-->
-		</tr>
+				echo "<a href=/Sepfin/desbloqueouser.php?usuario=$us>$estadobloq</a>";} 
+				?>
+				</td>
+				<td>
+				<ul>
+				<a href="actualizarusuario.php?id_usuario=<?php echo $fila['id_usuario'] ?>">
+				<li class="editar" id="ed">
+				Editar</li></a>
+				</ul>
+				</td>
+				<td>
+				<ul>
+				<a href="javascript:;" onclick="aviso('borrarusuario.php?id_usuario=<?php echo $fila['id_usuario']?>'); return false;">
+				<li class="borrar" id="bor">
+				Eliminar</li></a>
+				</ul>
+				</td>
+			</tr>
             <?php } ?>
         </table>
+		 </center>
     </body>
 </html>
 <?php include("templates/footer.php"); ?>

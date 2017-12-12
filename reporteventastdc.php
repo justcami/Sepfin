@@ -14,40 +14,27 @@ if(isset($_POST['buscar']))
 $sql = "select * from ventadetarjetas $where";
 $result = $con -> query($sql);	
 ?>
-			
-            <a href="logout.php">Cerrar Sesion</a><br>
-<a href="productos.php">Regresar</a><br><br>			
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-<style>
-<!--
-.inputcentrado {
-	text-align: center;
-	background-color:LAVENDER;
-   }
-   
-table tr:nth-child(even) {
-	background-color: #eee;
-}
- 
-table tr:nth-child(odd) {
-	background-color: #fff;
-}
-.table1 {
-	width:3000;
-	font-size: 12px;
-}
-.table2 {
-	width:auto;
-}
--->
-</style>
-<title>REPORTES VENTAS DE TARJETAS DE CREDITO</title>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+<link href="css2/estilos.css" type="text/css" rel="stylesheet" media="">
 <script language="JavaScript">
 function aviso(url){
-if (!confirm("ADVERTENCIA!!  Va a editar un producto, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.")) {
+if (!confirm("CUIDADO!!  Va a proceder a eliminar un usuario, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.")) {
+return false;
+}
+else {
+document.location = url;
+return true;
+}
+}
+</script>
+<title>Reporte Venta de Tarjetas</title>
+<script language="JavaScript">
+function aviso(url){
+if (!confirm("ADVERTENCIA!!  Va a editar un agendamiento, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.")) {
 return false;
 }
 else {
@@ -56,31 +43,66 @@ return true;
 }
 }
 </script> 
-   </head>
-   <body>         
-<center>
-            <img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
-            <h3 style="color:blue;">REPORTES VENTAS DE TARJETAS DE CREDITO</h3>
-</center>
-<div id="filtros" align="center">
-<table class="table2">
-<tr>
-<!-- CON ESTE FORM ENVIO LA PALABRA A BUSCAR PARA FILTRARLA Y MOSTRARLA EN PANTALLA-->
-<form action="reporteventastdc.php" method="POST">
-<td><input type="text" name="filtro" placeholder="Que quiere buscar" method="post"></td>
-<td><button name="buscar" type="submit">Filtrar</button></td>
-</form>
-<!-- CON ESTE FORM ENVIO LA PALABRA A BUSCAR PARA HACER LA CONSULTA Y DESCARGAR LA INFO FILTRADA-->
-<form action="descargaventastdc.php" method="POST">
-<input type="hidden" name="busqueda2" method="post" value="<?php echo $busqueda;?>">
-<td><button name="buscar" type="submit">DESCARGAR</button></td>
-</form>
-</tr>
-</table><br>
-</div>		
-		
- <table class="table1" align="center" cellspacing="5" cellpadding="5" border="3" border="1">   
-            <tr align="center">
+</head>
+<body>
+<div id="agendamientomovil">
+<a href="logout.php">
+<div id="iconoau" class="usu">
+<img src="img/cerrarsesion.png" width="35" height="35" alt=""/>
+</div>
+</a>
+<div id="iconobu" class="usu">Cerrar Sesion
+</div>
+<a href="productos.php">
+<div id="iconocu" class="usu">
+<img src="img/regresar.png" width="29" height="29" alt=""/>
+</div>
+</a>
+<div id="iconodu" class="usu">Regresar
+</div>
+<div class="bienve" id="repagenda">
+			<?php 
+            echo "<b>Bienvenido: </b>";
+            echo $nuusuario."<br>";
+            ?>
+</div>
+</div>
+<header id="agendamientos">
+<div id="logoagendamientos">
+	<img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
+</div>
+</header>
+
+<div id="filtroagenomovil">
+<nav id="agendamientos">
+	<ul>
+		<li class="baner" id="recorda">Reporte Venta de Tarjetas de Credito</li>
+	</ul>	
+</nav>
+<div id="divfiltro">	
+	<ul >
+		<li class="botonesagendamientoa">
+			<form action="reporteventastdc.php" method="POST">
+			<input type="text" name="filtro" placeholder="Que quiere buscar" method="post">			
+		</li>
+		<li class="botonesagendamientoc">
+		<button name="buscar" type="submit" class="botonagen">Filtrar</button>
+			</form>
+		</li></a>
+		<li class="botonesagendamientob">
+			<form action="descargaventastdc.php" method="POST">
+			<input type="hidden" name="busqueda2" method="post" value="<?php echo $busqueda;?>">
+			<button name="buscar" type="submit" class="botonagen">Descargar</button>
+			</form>
+		</li></a>
+	</ul>
+</div>
+</div>
+ <center>
+<br><br>
+<!--<table class="agenda" border="1">-->
+<table class="agenda">  
+          <tr align="center">
 			<th>CEDULA</th>
             <th>NOMBRE</th>
 			<th>ESTADO</th>
@@ -132,14 +154,16 @@ return true;
 			<td><?php echo $row['detalletipi'] ?></td>
 			<td><?php echo $row['Usuario'] ?></td>
 			<td>
-			<form action="editventadmin.php" method="POST" onsubmit="return confirm('ADVERTENCIA!!  Va a editar un producto, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.');">
-			<input type="hidden" name="idproducto" method="post" value="<?php echo $row['idproducto']?>">
-			<button type="submit">GESTIONAR</button>
-			</form>	
+				<ul id="editaragendamientos">
+				<a href="javascript:;" onclick="aviso('editventadmin.php?idproducto=<?php echo $row['idproducto']?>'); return false;">
+				<li class="editar" id="edagen">
+				Editar</li></a>
+				</ul>
 			</td>
 		</tr>
             <?php } ?>
-</table>
+</table>					
+		 </center>
     </body>
 </html>
 <?php include("templates/footer.php"); ?>

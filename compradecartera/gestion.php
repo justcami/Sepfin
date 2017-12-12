@@ -10,76 +10,73 @@ if(isset($_POST['buscar']))
 {
 	$where = "WHERE EstadoRegistro='$Disponible' AND (cedula LIKE '%".$busqueda."%' OR nombre LIKE '%".$busqueda."%' OR tasa LIKE '%".$busqueda."%' OR extracupo LIKE '%".$busqueda."%' OR cupodispo LIKE '%".$busqueda."%' OR potencialtdc LIKE '%".$busqueda."%' OR tel1 LIKE '%".$busqueda."%' OR tel2 LIKE '%".$busqueda."%' OR tel3 LIKE '%".$busqueda."%' OR tel4 LIKE '%".$busqueda."%' OR tel5 LIKE '%".$busqueda."%' OR tel6 LIKE '%".$busqueda."%' OR tel7 LIKE '%".$busqueda."%' OR tel8 LIKE '%".$busqueda."%' OR tel9 LIKE '%".$busqueda."%' OR tel10 LIKE '%".$busqueda."%' OR tel11 LIKE '%".$busqueda."%' OR tel12 LIKE '%".$busqueda."%' OR tel13 LIKE '%".$busqueda."%' OR tel14 LIKE '%".$busqueda."%' OR tel15 LIKE '%".$busqueda."%' OR tel16 LIKE '%".$busqueda."%' OR tel17 LIKE '%".$busqueda."%' OR tel18 LIKE '%".$busqueda."%' OR tel19 LIKE '%".$busqueda."%' OR tel20 LIKE '%".$busqueda."%' OR tel21 LIKE '%".$busqueda."%' OR tel22 LIKE '%".$busqueda."%' OR tipificacion LIKE '%".$busqueda."%' OR detalletipi LIKE '%".$busqueda."%' OR Usuario LIKE '%".$busqueda."%')";
 }	
-
 $sql = "select * from compradecartera $where";
 $result = $con -> query($sql);	//Con esta consultado traigo todos los campos de la tabla productos escogida o asignada
-
-echo "<b>Bienvenido: </b>";
-echo $nuusuario."<br>";
-?>	
-<a href="../logout.php">Cerrar Sesion</a><br>			
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+?>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-<style>
-<!--
-.inputcentrado {
-	text-align: center;
-	background-color:LAVENDER;
-   }
-   
-table tr:nth-child(even) {
-	background-color: #eee;
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+<link href="../css2/estilos.css" type="text/css" rel="stylesheet" media="">
+<script language="JavaScript">
+function aviso(url){
+if (!confirm("CUIDADO!!  Va a proceder a editar un registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.")) {
+return false;
 }
- 
-table tr:nth-child(odd) {
-	background-color: #fff;
+else {
+document.location = url;
+return true;
 }
-
-table {
-	width: 5000;
-	font-size: 12px;
 }
--->
-</style>
+</script>
 <title>GESTION DE PRODUCTOS SEPFIN</title>
-   </head>
-   <body>         
-<center>
-            <img src="../img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
-            <h3 style="color:blue;">GESTION DE PRODUCTOS</h3>
-</center>
-<div id="filtros" align="center">
-<form action="gestion.php" method="POST">
-<b>Que quiere buscar </b><input type="text" name="filtro" placeholder="Filtro" method="post">            
-<button name="buscar" type="submit">Filtrar</button>
-</form>
-</div>			
-   <?php
-   //<p>&nbsp;</p>
-   ?>
-<center style="color:blue"><strong>
-			Producto Asignado <?php
-			
-			$busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'");
-			$row_cnt = $busprod->num_rows;
-			if ($row_cnt > 0) 
-			{
-			//Recuperamos una fila de resultados como un array asociativo.
-				while ($rowproducto = $busprod->fetch_assoc()) 
-				{ //Ya podemos trabajos con nuestros datos.        
-					$rowproducto = $rowproducto['Producto'];
-					#etc.
-					$str = strtoupper($rowproducto);
-					echo $str;
-			}}
-			?>
-			</strong></center>
-        <br>
-		
- <table align="center" cellspacing="5" cellpadding="5" border="3" border="1">   
-            <tr align="center">
+</head>
+<body>
+<div id="agendamientomovil">
+<a href="../logout.php">
+<div id="iconoau" class="usu">
+<img src="../img/cerrarsesion.png" width="35" height="35" alt=""/>
+</div>
+</a>
+<div id="iconobu" class="usu">Cerrar Sesion
+</div>
+<div class="bienve" id="repagenda">
+			<?php 
+            echo "<b>Bienvenido: </b>";
+            echo $nuusuario."<br>";
+            ?>
+</div>
+</div>
+<header id="agendamientos">
+<div id="logoagendamientos">
+	<img src="../img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
+</div>
+</header>
+
+<div id="filtroagenomovil">
+<nav id="agendamientos">
+	<ul>
+		<li class="baner" id="recorda">Gestion de Compra de Cartera</li>
+	</ul>	
+</nav>
+<div id="divfiltro">	
+	<ul >
+		<li class="botonesagendamientoa">
+			<form action="gestion.php" method="POST">
+			<input type="text" name="filtro" placeholder="Que quiere buscar" method="post">			
+		</li>
+		<li class="botonesagendamientoc">
+		<button name="buscar" type="submit" class="botonagen">Filtrar</button>
+			</form>
+		</li></a>
+	</ul>
+</div>
+</div>
+ <center>
+<br><br>
+<table class="agenda">
+           <tr align="center">
 			<th>CEDULA</th>
             <th>NOMBRE</th>
             <th>TASA</th>
@@ -161,14 +158,15 @@ table {
 			<td><?php echo $row['detalletipi'] ?></td>
 			<td><?php echo $row['Usuario'] ?></td>
 			<td>
-			<form action="/Sepfin/compradecartera/editprousuario.php" method="POST" onsubmit="return confirm('ADVERTENCIA!!  Va a editar un producto, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.');">
-			<input type="hidden" name="idproducto" method="post" value="<?php echo $row['idproducto']?>">
-			<button type="submit">EDITAR</button>
-			</form>	
+				<ul id="editaragendamientos">
+				<a href="javascript:;" onclick="aviso('editprousuario.php?idproducto=<?php echo $row['idproducto']?>'); return false;">
+				<li class="editar" id="edagen">
+				Editar</li></a>
+				</ul>
 			</td>
 		</tr>
-            <?php } ?>
-        </table>
+         <?php } ?>
+</table></center>
     </body>
 </html>
 <?php include("templates/footer.php"); ?>

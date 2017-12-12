@@ -15,8 +15,8 @@
 	<div id="formulario">
 	    <form action="validar.php" method="POST">
 			<h4>ACCESO CRM SEPFIN - IDENTIFIQUESE</h4>
-				<input type="text" name="usuario" placeholder="Usuario" required>
-				<input type="password" name="pass" placeholder="Contraseña" required>
+				<input type="text" name="usuario" placeholder="Usuario" class="logo" required>
+				<input type="password" name="pass" placeholder="Contraseña" class="logo" required>
 				<input type="submit" value="Ingresar">
         </form>    
 	</div>

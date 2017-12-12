@@ -2,9 +2,52 @@
 include("../seguridad4.php");
 include ('../conexion3.php');
 include ('../conexion.php');
-error_reporting (0);
+//error_reporting (0);
 
-$idagendamiento = $_REQUEST['idagendamiento'];
+//Traigo la cedula de la tabla ventatarjetas con el idproducto
+$idproducto = $_REQUEST['idproducto'];
+
+$busproda = $con -> query ("SELECT * FROM ventadetarjetas WHERE idproducto='$idproducto'");
+			$row_cnt = $busproda->num_rows;
+			if ($row_cnt > 0) 
+			{
+			//Recuperamos una fila de resultados como un array asociativo.
+				while ($row = $busproda->fetch_assoc()) 
+				{ //Ya podemos trabajos con nuestros datos.        
+					$cedula = $row['cedula'];
+					$nombre = $row['nombre'];
+					$estado = $row['estado'];
+					$direccion = $row['direccion'];
+					$barrio = $row['barrio'];
+					$localidad = $row['localidad'];
+					$tel1 = $row['tel1'];
+					$tel2 = $row['tel2'];
+					$tel3 = $row['tel3'];
+					$fecha = date("Y-m-d h:i:s A");
+					$base = $row['base'];
+					$Libre="";
+					$phrase = "Venta de Tarjetas";
+					#etc.	
+
+//Con la cedula busco el idagendamiento de la tabla agendamientos
+$busprodins = $con -> query ("SELECT idagendamiento FROM agendamientos WHERE cedula='$cedula'");
+			$row_cnt3 = $busprodins->num_rows;			
+			if ($row_cnt3 < 1)
+			{
+				$up2 = $con -> query ("INSERT INTO agendamientos (idagendamiento, cedula, nombre, estado, direccion, barrio, localidad, tel1, tel2, tel3, fecha, base, EstadoRegistro, Usuario, producto) VALUES ('','$cedula','$nombre','$estado','$direccion','$barrio','$localidad','$tel1','$tel2','$tel3','$fecha','$base','$Libre','$nuusuario','$phrase')");
+			}
+//Si no encuentra el if simplemente sigue leyendo el condigo, quiere decir que si encontro datos
+$busprodb = $con -> query ("SELECT idagendamiento FROM agendamientos WHERE cedula='$cedula'");
+			$row_cnt = $busprodb->num_rows;
+			if ($row_cnt > 0) 
+			{
+			//Recuperamos una fila de resultados como un array asociativo.
+				while ($rowidagenda = $busprodb->fetch_assoc()) 
+				{ //Ya podemos trabajos con nuestros datos.        
+					$rowidagenda = $rowidagenda['idagendamiento'];
+					#etc.	
+
+$idagendamiento = $rowidagenda;
 					
 $estadoregistro = $con -> query ("SELECT EstadoRegistro FROM agendamientos WHERE idagendamiento='$idagendamiento'");
 			$row_cnt2 = $estadoregistro->num_rows;
@@ -45,7 +88,7 @@ $estadoregistro = $con -> query ("SELECT EstadoRegistro FROM agendamientos WHERE
         alert('El Registro esta agendado por otro Usuario, usted no lo puede modificar');
         location.href='agendamientos.php';
         </script>";	
-		}}}}
+			}}}}}}}}
 ?>
 <html>
 <head>
@@ -129,7 +172,7 @@ $estadoregistro = $con -> query ("SELECT EstadoRegistro FROM agendamientos WHERE
 <tr align="center">
 <td>Vendedor<br><input type="text" class="inputcentrado" name="usuario" value="<?php echo $fila['Usuario']?>" readonly="readonly"></td>
 			<td>Tipificacion<select name="Tipificacion" class="selectencontrado" onkeydown="tipi(this)" required>
-            <option><?php echo $fila['tipificacion']?></option>
+            <option><?php echo $fila['tipitificacion']?></option>
 			<option>AGENDADO</option>
             <option>ENTREGADO</option>
             <option>ILOCALIZADO</option>
@@ -162,4 +205,4 @@ $estadoregistro = $con -> query ("SELECT EstadoRegistro FROM agendamientos WHERE
 </form>		
 </body>
 </html>
-<?php include("templates/footer.php"); ?>
+<?php include("../templates/footer.php"); ?>

@@ -27,81 +27,93 @@ $base = $_POST['base'];
 $Libre = "";
 
 //Buscar la tabla asignada al usuario
-$busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'");
-			$row_cnt = $busprod->num_rows;
-			if ($row_cnt > 0) 
+	$busprod = $con3 -> query ("SELECT Producto FROM usuarios WHERE usuario='$user'");
+	$row_cnt = $busprod->num_rows;
+	if ($row_cnt > 0) 
+	{
+		//Recuperamos una fila de resultados como un array asociativo.
+		while ($rowproducto = $busprod->fetch_assoc()) 
+		{ //Ya podemos trabajos con nuestros datos.        
+
+			$rowproducto = $rowproducto['Producto'];
+			#etc.
+			$phrase  = $rowproducto;
+			$espacio = array(" ");
+			$sin   = array("");
+			$newphrase = str_replace($espacio, $sin, $phrase);
+			$Venta2 = "VENTA";
+			$vacio="";
+
+/*			if($Tipificacion==$Venta2)
 			{
-			//Recuperamos una fila de resultados como un array asociativo.
-				while ($rowproducto = $busprod->fetch_assoc()) 
-				{ //Ya podemos trabajos con nuestros datos.        
-					$rowproducto = $rowproducto['Producto'];
-					#etc.
-					
-$phrase  = $rowproducto;
-$espacio = array(" ");
-$sin   = array("");
-$newphrase = str_replace($espacio, $sin, $phrase);
+				$up = $con -> query ("UPDATE $newphrase SET idproducto='$idproducto',cedula='$cedula',nombre='$nombre',estado='$estado',tel1='$tel1',tel2='$tel2',tel3='$tel3',tel4='$tel4',tel5='$tel5',tel6='$tel6',tel7='$tel7',direccion='$direccion',barrio='$barrio',localidad='$localidad',tipificacion='$Tipificacion',detalletipi='$DetalleTipi',fecha='$fecha',base='$base',EstadoRegistro='$Libre',Usuario='$nuusuario' WHERE idproducto='$idproducto'");
+
+				$busidagen = $con -> query ("SELECT idagendamiento FROM agendamientos WHERE cedula='$cedula'");
+				$row_cnt = $busidagen->num_rows;
+
+				if ($row_cnt >= 1) 
+				{
+					//Recuperamos una fila de resultados como un array asociativo.
+					while ($rowidagendamiento = $busidagen->fetch_assoc()) 
+					{
+						//Ya podemos trabajos con nuestros datos.        
+						$rowidagendamiento = $rowidagendamiento['idagendamiento'];
+						#etc.
+						$up2 = $con -> query ("UPDATE agendamientos SET cedula='$cedula', nombre='$nombre', estado='$estado', direccion='$direccion', barrio='$barrio', localidad='$localidad', tel1='$tel1', tel2='$tel2', tel3='$tel3', motivo1='$motivo1', motivo2='$motivo2', motivo3='$motivo3', fecha='$fecha', base='$base', EstadoRegistro='$Libre', Usuario='$nuusuario', producto='$phrase' WHERE idagendamiento='$rowidagendamiento'");	
+					}
+				}else
+				{
+					$up2 = $con -> query ("INSERT INTO agendamientos (idagendamiento, cedula, nombre, estado, direccion, barrio, localidad, tel1, tel2, tel3, fecha, base, EstadoRegistro, Usuario, producto) VALUES ('','$cedula','$nombre','$estado','$direccion','$barrio','$localidad','$tel1','$tel2','$tel3','$fecha','$base','$Libre','$nuusuario','$phrase')");
+				}
 				
-$Venta2 = "VENTA";
-$vacio="";
-
-if($Tipificacion==$Venta2){
-
-$up = $con -> query ("UPDATE $newphrase SET idproducto='$idproducto',cedula='$cedula',nombre='$nombre',estado='$estado',tel1='$tel1',tel2='$tel2',tel3='$tel3',tel4='$tel4',tel5='$tel5',tel6='$tel6',tel7='$tel7',direccion='$direccion',barrio='$barrio',localidad='$localidad',tipificacion='$Tipificacion',detalletipi='$DetalleTipi',fecha='$fecha',base='$base',EstadoRegistro='$Libre',Usuario='$nuusuario'
-WHERE idproducto='$idproducto'");
-
-$busidagen = $con -> query ("SELECT idagendamiento FROM agendamientos WHERE cedula='$cedula'");
-			$row_cnt = $busidagen->num_rows;
-			if ($row_cnt >= 1) 
+				$busidagen = $con -> query ("SELECT idagendamiento FROM agendamientos WHERE cedula='$cedula'");
+				$row_cnt = $busidagen->num_rows;
+				if ($row_cnt >= 1) 
+				{
+					//Recuperamos una fila de resultados como un array asociativo.
+					while ($rowidagendamiento = $busidagen->fetch_assoc()) 
+					{ 
+						//Ya podemos trabajos con nuestros datos.        
+						$rowidagendamiento = $rowidagendamiento['idagendamiento'];
+						#etc.
+						if (($up) && ($up2))
+						{
+							echo
+							"<script>
+							alert('Registro Actualizado Exitosamente, debe agendar');
+					        location.href='/Sepfin/ventadetarjetas/editagendamiento.php?idagendamiento=$rowidagendamiento';
+					        </script>";
+						}else
+						{
+							echo
+								"<script>
+								alert('Epa!! Algo Paso');
+						        location.href='/Sepfin/ventadetarjetas/gestion.php';
+						        </script>";	
+						}
+					}
+				}
+			}else
 			{
-			//Recuperamos una fila de resultados como un array asociativo.
-				while ($rowidagendamiento = $busidagen->fetch_assoc()) 
-				{ //Ya podemos trabajos con nuestros datos.        
-					$rowidagendamiento = $rowidagendamiento['idagendamiento'];
-					#etc.
-$up2 = $con -> query ("UPDATE agendamientos SET cedula='$cedula',nombre='$nombre',estado='$estado',direccion='$direccion',barrio='$barrio',localidad='$localidad',tel1='$tel1',tel2='$tel2',tel3='$tel3',motivo1='$motivo1',motivo2='$motivo2',motivo3='$motivo3',fecha='$fecha',base='$base',EstadoRegistro='$Libre',Usuario='$nuusuario' WHERE idagendamiento='$rowidagendamiento'");	
-			}}else{
-				$up2 = $con -> query ("INSERT INTO agendamientos (idagendamiento,cedula,nombre,estado,direccion,barrio,localidad,tel1,tel2,tel3,fecha,base,EstadoRegistro,Usuario) VALUES ('','$cedula','$nombre','$estado','$direccion','$barrio','$localidad','$tel1','$tel2','$tel3','$fecha','$base','$Libre','$nuusuario')");
-			}
+*/
+				$up = $con -> query ("UPDATE $newphrase SET idproducto='$idproducto',cedula='$cedula',nombre='$nombre',estado='$estado',tel1='$tel1',tel2='$tel2',tel3='$tel3',tel4='$tel4',tel5='$tel5',tel6='$tel6',tel7='$tel7',direccion='$direccion',barrio='$barrio',localidad='$localidad',tipificacion='$Tipificacion',detalletipi='$DetalleTipi',fecha='$fecha',base='$base',EstadoRegistro='$Libre',Usuario='$nuusuario' WHERE idproducto='$idproducto'");
+				if ($up) 
+				{
+					echo
+						"<script>
+						alert('Registro Actualizado Exitosamente');
+				        location.href='/Sepfin/ventadetarjetas/gestion.php';
+				        </script>";	
+				}else
+				{
+					echo
+						"<script>
+						alert('Epa!! Algo Paso');
+				        location.href='/Sepfin/ventadetarjetas/gestion.php';
+				        </script>";	
+				} 
+			
+		}
+	}
 
-$busidagen = $con -> query ("SELECT idagendamiento FROM agendamientos WHERE cedula='$cedula'");
-			$row_cnt = $busidagen->num_rows;
-			if ($row_cnt >= 1) 
-			{
-			//Recuperamos una fila de resultados como un array asociativo.
-				while ($rowidagendamiento = $busidagen->fetch_assoc()) 
-				{ //Ya podemos trabajos con nuestros datos.        
-					$rowidagendamiento = $rowidagendamiento['idagendamiento'];
-					#etc.
-					
-if (($up) && ($up2)) {
-echo
-		"<script>
-		alert('Registro Actualizado Exitosamente, debe agendar');
-        location.href='/Sepfin/ventadetarjetas/editagendamiento.php?idagendamiento=$rowidagendamiento';
-        </script>";
-}else {
-echo
-		"<script>
-		alert('Epa!! Algo Paso');
-        location.href='/Sepfin/ventadetarjetas/gestion.php';
-        </script>";	
-} 
-}}}else{
-$up = $con -> query ("UPDATE $newphrase SET idproducto='$idproducto',cedula='$cedula',nombre='$nombre',estado='$estado',tel1='$tel1',tel2='$tel2',tel3='$tel3',tel4='$tel4',tel5='$tel5',tel6='$tel6',tel7='$tel7',direccion='$direccion',barrio='$barrio',localidad='$localidad',tipificacion='$Tipificacion',detalletipi='$DetalleTipi',fecha='$fecha',base='$base',EstadoRegistro='$Libre',Usuario='$nuusuario'
-WHERE idproducto='$idproducto'");
-if ($up) {
-echo
-		"<script>
-		alert('Registro Actualizado Exitosamente');
-        location.href='/Sepfin/ventadetarjetas/gestion.php';
-        </script>";	
-}else{
-echo
-		"<script>
-		alert('Epa!! Algo Paso');
-        location.href='/Sepfin/ventadetarjetas/gestion.php';
-        </script>";	
-} 
-			}}}
 ?>

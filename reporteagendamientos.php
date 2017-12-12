@@ -14,39 +14,24 @@ if(isset($_POST['buscar']))
 $sql = "select * from agendamientos $where";
 $result = $con -> query($sql);	
 ?>
-			
-            <a href="logout.php">Cerrar Sesion</a><br>
-<a href="main.php">Regresar al inicio</a><br><br>			
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-
-<style>
-<!--
-.inputcentrado {
-	text-align: center;
-	background-color:LAVENDER;
-   }
-   
-table tr:nth-child(even) {
-	background-color: #eee;
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+<link href="css2/estilos.css" type="text/css" rel="stylesheet" media="">
+<script language="JavaScript">
+function aviso(url){
+if (!confirm("CUIDADO!!  Va a proceder a eliminar un usuario, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.")) {
+return false;
 }
- 
-table tr:nth-child(odd) {
-	background-color: #fff;
+else {
+document.location = url;
+return true;
 }
-.table1 {
-	width:3000;
-	font-size: 12px;
 }
-.table2 {
-	width:auto;
-}
--->
-</style>
-
-<title>REPORTES DE AGENDAMIENTOS SEPFIN</title>
+</script>
+<title>Usuarios Sepfin</title>
 <script language="JavaScript">
 function aviso(url){
 if (!confirm("ADVERTENCIA!!  Va a editar un agendamiento, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.")) {
@@ -58,31 +43,67 @@ return true;
 }
 }
 </script> 
-   </head>
-   <body>         
-<center>
-            <img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
-            <h3 style="color:blue;">REPORTES DE AGENDAMIENTOS</h3>
-</center>
-<div id="filtros" align="center">
-<table class="table2">
-<tr>
-<!-- CON ESTE FORM ENVIO LA PALABRA A BUSCAR PARA FILTRARLA Y MOSTRARLA EN PANTALLA-->
-<form action="reporteagendamientos.php" method="POST">
-<td><input type="text" name="filtro" placeholder="Que quiere buscar" method="post"></td>
-<td><button name="buscar" type="submit">Filtrar</button></td>
-</form>
-<!-- CON ESTE FORM ENVIO LA PALABRA A BUSCAR PARA HACER LA CONSULTA Y DESCARGAR LA INFO FILTRADA-->
-<form action="descargaagendamientos.php" method="POST">
-<input type="hidden" name="busqueda2" method="post" value="<?php echo $busqueda;?>">
-<td><button name="buscar" type="submit">DESCARGAR</button></td>
-</form>
-</tr>
-</table><br>
-</div>			
-			
- <table class="table1" align="center" cellspacing="3" cellpadding="3" border="3" border="1">   
-            <tr align="center">
+</head>
+
+<body>
+<div id="agendamientomovil">
+<a href="logout.php">
+<div id="iconoau" class="usu">
+<img src="img/cerrarsesion.png" width="35" height="35" alt=""/>
+</div>
+</a>
+<div id="iconobu" class="usu">Cerrar Sesion
+</div>
+<a href="main.php">
+<div id="iconocu" class="usu">
+<img src="img/regresar.png" width="29" height="29" alt=""/>
+</div>
+</a>
+<div id="iconodu" class="usu">Regresar
+</div>
+<div class="bienve" id="repagenda">
+			<?php 
+            echo "<b>Bienvenido: </b>";
+            echo $nuusuario."<br>";
+            ?>
+</div>
+</div>
+<header id="agendamientos">
+<div id="logoagendamientos">
+	<img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
+</div>
+</header>
+
+<div id="filtroagenomovil">
+<nav id="agendamientos">
+	<ul>
+		<li class="baner" id="recorda">Reportes de Agendamientos Sepfin</li>
+	</ul>	
+</nav>
+<div id="divfiltro">	
+	<ul >
+		<li class="botonesagendamientoa">
+			<form action="reporteagendamientos.php" method="POST">
+			<input type="text" name="filtro" placeholder="Que quiere buscar" method="post">			
+		</li>
+		<li class="botonesagendamientoc">
+		<button name="buscar" type="submit" class="botonagen">Filtrar</button>
+			</form>
+		</li></a>
+		<li class="botonesagendamientob">
+			<form action="descargaagendamientos.php" method="POST">
+			<input type="hidden" name="busqueda2" method="post" value="<?php echo $busqueda;?>">
+			<button name="buscar" type="submit" class="botonagen">Descargar</button>
+			</form>
+		</li></a>
+	</ul>
+</div>
+</div>
+ <center>
+<br><br>
+<!--<table class="agenda" border="1">-->
+<table class="agenda">  
+            <tr>
 			<td><b>Cedula</b></td>
             <td><b>Codigo</b></td>
             <td><b>Codigo Sobre</b></td>
@@ -118,7 +139,7 @@ return true;
 		while ($row = $result->fetch_assoc())
 		{			
          ?>
-		<tr align="center">
+		<tr id="trba">
             <td><?php echo $row['cedula'] ?></td>
             <td><?php echo $row['codigo'] ?></td>
 			<td><?php echo $row['codigosobre'] ?></td>
@@ -143,10 +164,19 @@ return true;
 			<td><?php echo $row['hora'] ?></td>
 			<td><?php echo $row['asesor'] ?></td>
 			<td><?php echo $row['base'] ?></td>
-			<td><a href="javascript:;" onclick="aviso('/Sepfin/editagendaadmin.php?idagendamiento=<?php echo $row['idagendamiento']?>'); return false;">EDITAR</a></td>
+			<td>
+				<ul id="editaragendamientos">
+				<a href="javascript:;" onclick="aviso('editagendaadmin.php?idagendamiento=<?php echo $row['idagendamiento']?>'); return false;">
+				<li class="editar" id="edagen">
+				Editar</li></a>
+				</ul>
+			</td>
 		</tr>
             <?php } ?>
-</table>
+</table>		
+				
+				
+				
+		 </center>
     </body>
 </html>
-<?php include("templates/footer.php"); ?>

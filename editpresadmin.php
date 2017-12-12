@@ -5,25 +5,49 @@ error_reporting (0);
 $idproducto = $_REQUEST['idproducto'];
 $sql = "select * from prestamospersonales WHERE idproducto='$idproducto'";
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Edicion de Registros</title>
-<script src="js2/enter.js"></script>
-<link href="css2/sepfin.css" rel="stylesheet">  
-</head>
-  <body>
-<form action="reporteprestamos.php" method="POST" onsubmit="return confirm('Esta Seguro de que no quiere realizar cambios?');">
-<button type="submit">Regresar Sin Realizar Cambios</button>
-</form>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+<link href="css2/estiloeditaruser.css" type="text/css" rel="stylesheet" media="">
+<style type="text/css">
+<!--
 
-<center>
-   <header>
-       <img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>      
-       <b><p> EDICION REGISTROS PRESTAMOS PERSONALES</p></b>
-   </header>
-</center>
-   		
+-->
+</style>
+<title>Edicion de Compra de Cartera</title>
+</head>
+<body>
+
+<body>
+<div id="agendamientomovil">
+<a href="reporteprestamos.php" onsubmit="return confirm('Esta Seguro de que no quiere realizar cambios?');">
+<div id="iconocu" class="usu">
+<img src="img/regresar.png" width="29" height="29" alt=""/>
+</div>
+</a>
+<div id="iconodu" class="usu">Regresar
+</div>
+<div class="bienve" id="repagenda">
+			<?php 
+            echo "<b>Bienvenido: </b>";
+            echo $nuusuario."<br>";
+            ?>
+</div>
+</div>
+<header id="agendamientos">
+<div id="logoagendamientos">
+	<img src="img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
+</div>
+</header>
+<div id="filtroagenomovil">
+<nav id="agendamientos">
+	<ul>
+		<li class="baner" id="recorda">Editar Registro Prestamos Personales</li>
+	</ul>	
+</nav>
+
 <form id="form1" name="form1" action="updateregistropresadmin.php" method="post" onkeypress="return CanCelEnter()">
 <center><table border="1" class="table3">
                  <?php

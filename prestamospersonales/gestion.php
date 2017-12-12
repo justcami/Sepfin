@@ -13,53 +13,80 @@ if(isset($_POST['buscar']))
 }	
 $sql = "select * from prestamospersonales $where";
 $result = $con -> query($sql);	//Con esta consultado traigo todos los campos de la tabla productos escogida o asignada
-
-echo "<b>Bienvenido: </b>";
-echo $nuusuario."<br>";
-?>	
-<a href="../logout.php">Cerrar Sesion</a><br>			
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+?>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-<style>
-<!--
-.inputcentrado {
-	text-align: center;
-	background-color:LAVENDER;
-   }
-   
-table tr:nth-child(even) {
-	background-color: #eee;
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+<link href="../css2/estilos.css" type="text/css" rel="stylesheet" media="">
+<script language="JavaScript">
+function aviso(url){
+if (!confirm("CUIDADO!!  Va a proceder a editar un registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.")) {
+return false;
 }
- 
-table tr:nth-child(odd) {
-	background-color: #fff;
+else {
+document.location = url;
+return true;
 }
-
-table {
-	width: 5000;
-	font-size: 12px;
 }
--->
-</style>
+</script>
 <title>GESTION DE PRODUCTOS SEPFIN</title>
-   </head>
-   <body>         
-<center>
-            <img src="../img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
-            <h3 style="color:blue;">GESTION DE PRODUCTOS</h3>
-</center>
-<div id="filtros" align="center">
-<form action="gestion.php" method="POST">
-<b>Que quiere buscar </b><input type="text" name="filtro" placeholder="Filtro" method="post">            
-<button name="buscar" type="submit">Filtrar</button>
-</form>
-</div>			
-<center style="color:blue"><strong>Producto Asignado PRESTAMOS PERSONALES</strong></center><br>
-		
-<table align="center" cellspacing="5" cellpadding="5" border="3" border="1">   
-            <tr align="center">
+</head>
+<body>
+<div id="agendamientomovil">
+<a href="../logout.php">
+<div id="iconoau" class="usu">
+<img src="../img/cerrarsesion.png" width="35" height="35" alt=""/>
+</div>
+</a>
+<div id="iconobu" class="usu">Cerrar Sesion
+</div>
+<div id="iconoaedita" class="bienve">
+	<ul>
+		<li class="botonreporteagenda">	
+		<form action="agendamientos.php" method="POST">
+		<button name="buscar" type="submit" class="botonagen">AGENDADOS</button>
+		</form>
+		</li>
+	</ul>
+</div>
+<div class="bienve" id="repagenda">
+			<?php 
+            echo "<b>Bienvenido: </b>";
+            echo $nuusuario."<br>";
+            ?>
+</div>
+</div>
+<header id="agendamientos">
+<div id="logoagendamientos">
+	<img src="../img/Marca_AXTRAC.png" width="247" height="115" alt=""/>
+</div>
+</header>
+
+<div id="filtroagenomovil">
+<nav id="agendamientos">
+	<ul>
+		<li class="baner" id="recorda">Reportes de Prestamos Personales</li>
+	</ul>	
+</nav>
+<div id="divfiltro">	
+	<ul >
+		<li class="botonesagendamientoa">
+			<form action="gestion.php" method="POST">
+			<input type="text" name="filtro" placeholder="Que quiere buscar" method="post">			
+		</li>
+		<li class="botonesagendamientoc">
+		<button name="buscar" type="submit" class="botonagen">Filtrar</button>
+			</form>
+		</li></a>
+	</ul>
+</div>
+</div>
+ <center>
+<br><br>
+<table class="agenda">
+           <tr>
 			<th>CEDULA</th>
             <th>NOMBRE</th>
             <th>CUPO_60 MESES</th>
@@ -109,7 +136,7 @@ table {
 		while ($row = $result->fetch_assoc())
 		{			
          ?>
-		<tr align="center">
+		<tr>
             <td><?php echo $row['cedula'] ?></td>
             <td><?php echo $row['nombre'] ?></td>
 			<td>$<?php echo $row['cupo60'] ?></td>
@@ -149,14 +176,15 @@ table {
 			<td><?php echo $row['detalletipi'] ?></td>
 			<td><?php echo $row['Usuario'] ?></td>
 			<td>
-			<form action="/Sepfin/prestamospersonales/editprousuario.php" method="POST" onsubmit="return confirm('ADVERTENCIA!!  Va a editar un producto, esto altera la informacion de ese registro, si esta seguro de click en ACEPTAR, de lo contrario de click en CANCELAR.');">
-			<input type="hidden" name="idproducto" method="post" value="<?php echo $row['idproducto']?>">
-			<button type="submit">EDITAR</button>
-			</form>	
+				<ul id="editaragendamientos">
+				<a href="javascript:;" onclick="aviso('editprousuario.php?idproducto=<?php echo $row['idproducto']?>'); return false;">
+				<li class="editar" id="edagen">
+				Editar</li></a>
+				</ul>
 			</td>
 		</tr>
-            <?php } ?>
-        </table>
+         <?php } ?>
+</table></center>
     </body>
 </html>
 <?php include("templates/footer.php"); ?>

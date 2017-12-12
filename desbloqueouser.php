@@ -9,7 +9,7 @@ $usuario = $_REQUEST['usuario'];
 if ($up) {
 				echo "<script>
 				alert('Se desbloqueo el usuario');
-				location.href='usuarios.php/';
+				location.href='usuarios.php';
 				</script>";
 				}
 		
@@ -18,7 +18,7 @@ if ($up) {
 		echo 
 		"<script>
         alert('No se pudo desbloquear el usuario');
-        location.href='usuarios.php/';
+        location.href='usuarios.php';
         </script>"; 
 }
 ?>

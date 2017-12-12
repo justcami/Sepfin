@@ -66,47 +66,104 @@ $Prestamos = "Prestamos Personales";
 $Compra = "Compra de Cartera";
 $Venta = "Venta de Tarjetas";					
 
-$up = $con -> query ("UPDATE $newphrase SET idproducto='$idproducto',cedula='$cedula',nombre='$nombre',cupo60='$cupo60',cupo48='$cupo48',tasa='$tasa',cupoaprob='$Cupoaprob',plazoaprob='$plazoaprob',cuota='$cuota',direccion='$direccion',barrio='$barrio',localidad='$localidad',fijoreal='$fijoreal',celureal='$celureal',tel1='$tel1',tel2='$tel2',tel3='$tel3',tel4='$tel4',tel5='$tel5',tel6='$tel6',tel7='$tel7',tel8='$tel8',tel9='$tel9',tel10='$tel10',tel11='$tel11',tel12='$tel12',tel13='$tel13',tel14='$tel14',tel15='$tel15',tel16='$tel16',tel17='$tel17',tel18='$tel18',tel19='$tel19',tel20='$tel20',tel21='$tel21',tel22='$tel22',tipificacion='$Tipificacion',detalletipi='$DetalleTipi',fecha='$fecha',hora='$hora',vendedor='$asesor',EstadoRegistro='$Libre',Usuario='$nuusuario'
-WHERE idproducto='$idproducto'");
-if ($up) {
-if($rowproducto==$Prestamos){
-echo
-		"<script>
-		alert('Registro Actualizado Exitosamente');
-        location.href='/Sepfin/prestamospersonales/gestion.php';
-        </script>";
-} else if($rowproducto==$Compra){
-echo
-		"<script>
-		alert('Registro Actualizado Exitosamente');
-        location.href='/Sepfin/compradecartera/gestion.php';
-        </script>";	
-} else if($rowproducto==$Venta){
-echo
-		"<script>
-		alert('Registro Actualizado Exitosamente');
-        location.href='/Sepfin/ventadetarjetas/gestion.php';
-        </script>";	
-}
+		$up = $con -> query ("UPDATE $newphrase SET idproducto='$idproducto',cedula='$cedula',nombre='$nombre',cupo60='$cupo60',cupo48='$cupo48',tasa='$tasa',cupoaprob='$Cupoaprob',plazoaprob='$plazoaprob',cuota='$cuota',direccion='$direccion',barrio='$barrio',localidad='$localidad',fijoreal='$fijoreal',celureal='$celureal',tel1='$tel1',tel2='$tel2',tel3='$tel3',tel4='$tel4',tel5='$tel5',tel6='$tel6',tel7='$tel7',tel8='$tel8',tel9='$tel9',tel10='$tel10',tel11='$tel11',tel12='$tel12',tel13='$tel13',tel14='$tel14',tel15='$tel15',tel16='$tel16',tel17='$tel17',tel18='$tel18',tel19='$tel19',tel20='$tel20',tel21='$tel21',tel22='$tel22',tipificacion='$Tipificacion',detalletipi='$DetalleTipi',fecha='$fecha',hora='$hora',vendedor='$asesor',EstadoRegistro='$Libre',Usuario='$nuusuario'WHERE idproducto='$idproducto'");
+		
+		$agendar="AGENDADO";
+		if ($Tipificacion==$agendar)
+		{
+			$busidagen = $con -> query ("SELECT idagendamiento FROM agendamientos WHERE cedula='$cedula'");
+			$row_cnt = $busidagen->num_rows;
+			if ($row_cnt >= 1) 
+			{
+				//Recuperamos una fila de resultados como un array asociativo.
+				while ($rowidagendamiento = $busidagen->fetch_assoc()) 
+				{
+					//Ya podemos trabajos con nuestros datos.        
+					$rowidagendamiento2 = $rowidagendamiento['idagendamiento'];
+					#etc.
+					$up2 = $con -> query ("UPDATE agendamientos SET cedula='$cedula', nombre='$nombre', estado='$estado', direccion='$direccion', barrio='$barrio', localidad='$localidad', tel1='$tel1', tel2='$tel2', tel3='$tel3', motivo1='$motivo1', motivo2='$motivo2', motivo3='$motivo3', fecha='$fecha', base='$base', EstadoRegistro='$Libre', Usuario='$nuusuario', producto='$phrase' WHERE idagendamiento='$rowidagendamiento2'");	
+				}
+			}else
+			{
+				$up2 = $con -> query ("INSERT INTO agendamientos (idagendamiento, cedula, nombre, direccion, barrio, localidad, tel1, tel2, tel3, fecha, EstadoRegistro, Usuario, producto) VALUES ('','$cedula','$nombre','$direccion','$barrio','$localidad','$tel1','$tel2','$tel3','$fecha','$Libre','$nuusuario','$phrase')");
+			}
+			$busidagen = $con -> query ("SELECT idagendamiento FROM agendamientos WHERE cedula='$cedula'");
+			$row_cnt = $busidagen->num_rows;
+			if ($row_cnt >= 1) 
+			{
+				//Recuperamos una fila de resultados como un array asociativo.
+				while ($rowidagendamiento = $busidagen->fetch_assoc()) 
+				{ 
+					//Ya podemos trabajos con nuestros datos.        
+					$rowidagendamiento = $rowidagendamiento['idagendamiento'];
+					#etc.
+					if (($up) && ($up2))
+					{
+						echo
+						"<script>
+						alert('Registro Actualizado Exitosamente, debe agendar');
+				        location.href='/Sepfin/prestamospersonales/editagendamiento.php?idagendamiento=$rowidagendamiento';
+				        </script>";
+					}else
+					{
+						echo
+							"<script>
+							alert('Epa!! Algo Paso');
+					        location.href='/Sepfin/prestamospersonales/gestion.php';
+					        </script>";	
+					}
+				}
+			}
+		}
+				
+		if ($up)
+		{
+			if($rowproducto==$Prestamos)
+			{
+				echo
+					"<script>
+					alert('Registro Actualizado Exitosamente');
+			        location.href='/Sepfin/prestamospersonales/gestion.php';
+			        </script>";
+			}else if($rowproducto==$Compra)
+			{
+				echo
+					"<script>
+					alert('Registro Actualizado Exitosamente');
+			        location.href='/Sepfin/compradecartera/gestion.php';
+			        </script>";	
+			} else if($rowproducto==$Venta)
+			{
+				echo
+					"<script>
+					alert('Registro Actualizado Exitosamente');
+			        location.href='/Sepfin/ventadetarjetas/gestion.php';
+			        </script>";	
+			}
 		}else{
-    if($rowproducto==$Prestamos){
-echo
-		"<script>
-        alert('Epa!! Algo Paso');
-        location.href='/Sepfin/prestamospersonales/gestion.php';
-        </script>";
-} else if($rowproducto==$Compra){
-echo
-		"<script>
-		alert('Epa!! Algo Paso');
-        location.href='/Sepfin/compradecartera/gestion.php';
-        </script>";	
-} else if($rowproducto==$Venta){
-echo
-		"<script>
-		alert('Epa!! Algo Paso');
-        location.href='/Sepfin/ventadetarjetas/gestion.php';
-        </script>";	
-} 
-}}}
+		    if($rowproducto==$Prestamos)
+		    {
+				echo
+					"<script>
+			        alert('Epa!! Algo Paso');
+			        location.href='/Sepfin/prestamospersonales/gestion.php';
+			        </script>";
+			} else if($rowproducto==$Compra)
+			{
+				echo
+					"<script>
+					alert('Epa!! Algo Paso');
+			        location.href='/Sepfin/compradecartera/gestion.php';
+			        </script>";	
+			} else if($rowproducto==$Venta)
+			{
+				echo
+					"<script>
+					alert('Epa!! Algo Paso');
+			        location.href='/Sepfin/ventadetarjetas/gestion.php';
+			        </script>";	
+			}
+		}
+	}
+}
 ?>

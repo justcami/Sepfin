@@ -1,5 +1,5 @@
 <?php 
-include("../seguridad4.php");
+include("../seguridad3.php");
 include ('../conexion3.php');
 include ('../conexion.php');
 error_reporting (0);

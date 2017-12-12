@@ -17,7 +17,7 @@ if ($user_cnt > 0)
 			{
 		echo "<script>
         alert('Usuario Ya Existe');
-        location.href='crearusuarios.php/'; 
+        location.href='crearusuarios.php'; 
         </script>";
 		die; //Si el usuario existe muestra un mensaje y vuelve a crearusuarios.php
 			}else
@@ -44,12 +44,12 @@ if ($ins) {
 
 echo "<script>
         alert('Usuario Creado Exitosamente');
-        location.href='../Sepfin/usuarios.php/';
+        location.href='usuarios.php';
         </script>";
 }else{
     echo "<script>
         alert('No se pudo crear el Usuario');
-        location.href='../Sepfin/usuarios.php/';
+        location.href='usuarios.php';
         </script>"; 
 }
 }
@@ -68,12 +68,12 @@ if ($ins) {
 
 echo "<script>
         alert('Usuario Creado Exitosamente');
-        location.href='../Sepfin/usuarios.php/';
+        location.href='usuarios.php';
         </script>";
 }else{
     echo "<script>
         alert('No se pudo crear el Usuario');
-        location.href='../Sepfin/usuarios.php/';
+        location.href='usuarios.php';
         </script>"; 
 }
 }	
